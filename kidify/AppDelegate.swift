@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate
     var window: UIWindow?
     var session: SPTSession?
     var player: SPTAudioStreamingController?
-    let kClientId = "22e68ee4229647f6bbd29ae1628d14e7"
-    let kCallbackURL = "kidify://returnAfterLogin"
     
     func delay(_ delay:Double, closure:@escaping ()->()) {
         DispatchQueue.main.asyncAfter(
@@ -26,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        SPTAuth.defaultInstance().clientID = kClientId
-        SPTAuth.defaultInstance().redirectURL = URL(string:kCallbackURL)
+        SPTAuth.defaultInstance().clientID = "22e68ee4229647f6bbd29ae1628d14e7"
+        SPTAuth.defaultInstance().redirectURL = URL(string:"kidify://returnAfterLogin")
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope]
         
         return true
@@ -41,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate
             SPTAuth.defaultInstance().handleAuthCallback(withTriggeredAuthURL: url) { error, session in
                 // This is the callback that'll be triggered when auth is completed (or fails).
                 if error != nil {
-                    print("*** Auth error: \(error)")
+                    print("*** Auth error: \(String(describing: error))")
                     return
                 }
                 else {
