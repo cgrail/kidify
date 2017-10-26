@@ -76,7 +76,7 @@ class LoginController: UIViewController, WebViewControllerDelegate {
     func showPlayer() {
         self.firstLoad = false
         self.statusLabel.text = "Logged in."
-        //self.performSegue(withIdentifier: "ShowPlayer", sender: nil)
+        self.performSegue(withIdentifier: "ShowPlaylists", sender: nil)
     }
     
     func openLoginPage() {

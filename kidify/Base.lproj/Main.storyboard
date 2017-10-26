@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W9M-Pu-oLK">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M8I-53-cMN">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="aet-5K-xbY">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="M8I-53-cMN" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jJI-IM-dqK">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="W9M-Pu-oLK" kind="relationship" relationship="rootViewController" id="Kxf-xY-Y81"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ziv-Fw-GQz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1578" y="186"/>
+        </scene>
         <!--Login Controller-->
         <scene sceneID="FjE-Ah-i7L">
             <objects>
@@ -59,25 +75,75 @@
                             <constraint firstItem="pT9-jy-u3h" firstAttribute="height" secondItem="fyo-Gq-Spg" secondAttribute="height" id="Pch-Oe-d6p"/>
                             <constraint firstItem="hnf-W4-Mz3" firstAttribute="centerX" secondItem="pT9-jy-u3h" secondAttribute="centerX" id="Zi2-W0-SdB"/>
                             <constraint firstItem="hnf-W4-Mz3" firstAttribute="top" secondItem="MVa-IZ-qZN" secondAttribute="bottom" constant="2" id="aVW-9m-EcK"/>
-                            <constraint firstItem="QON-k1-pjM" firstAttribute="bottom" secondItem="z8E-gX-8Wj" secondAttribute="bottom" constant="150" id="cdq-mp-7iM"/>
+                            <constraint firstItem="QP5-i1-4oV" firstAttribute="bottom" secondItem="z8E-gX-8Wj" secondAttribute="bottom" constant="150" id="cdq-mp-7iM"/>
                             <constraint firstItem="z8E-gX-8Wj" firstAttribute="top" secondItem="c9p-g7-xNe" secondAttribute="bottom" constant="8" id="euN-wa-NVv"/>
-                            <constraint firstItem="QON-k1-pjM" firstAttribute="centerX" secondItem="pT9-jy-u3h" secondAttribute="centerX" id="fd7-rk-Buq"/>
+                            <constraint firstItem="QP5-i1-4oV" firstAttribute="centerX" secondItem="pT9-jy-u3h" secondAttribute="centerX" id="fd7-rk-Buq"/>
                             <constraint firstItem="pT9-jy-u3h" firstAttribute="centerX" secondItem="MVa-IZ-qZN" secondAttribute="centerX" id="oC5-eI-UV9"/>
                             <constraint firstItem="pT9-jy-u3h" firstAttribute="width" secondItem="fyo-Gq-Spg" secondAttribute="width" id="rMw-5P-0Bf"/>
                             <constraint firstItem="pT9-jy-u3h" firstAttribute="top" secondItem="MVa-IZ-qZN" secondAttribute="top" constant="-84" id="vKY-Ci-xHS"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QON-k1-pjM"/>
+                        <viewLayoutGuide key="safeArea" id="QP5-i1-4oV"/>
                     </view>
                     <navigationItem key="navigationItem" id="LmP-Sp-Z0a"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="350" height="700"/>
                     <connections>
                         <outlet property="statusLabel" destination="c9p-g7-xNe" id="gTt-kF-geO"/>
+                        <segue destination="o2c-X0-lE7" kind="show" identifier="ShowPlaylists" id="ODZ-sZ-y2h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLW-Rv-8Zz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-611" y="186"/>
+        </scene>
+        <!--Play Lists View Controller-->
+        <scene sceneID="Z8c-qX-l9Q">
+            <objects>
+                <tableViewController id="o2c-X0-lE7" customClass="PlayListsViewController" customModule="kidify" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KPw-ob-u4F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaylistTableViewCell" id="25N-vK-rts" customClass="PlaylistTableViewCell" customModule="kidify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="25N-vK-rts" id="JbJ-r5-UlE">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="testa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3E-mq-JWp">
+                                            <rect key="frame" x="8" y="11" width="398" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="S3E-mq-JWp" secondAttribute="trailing" id="33E-gd-GyQ"/>
+                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="top" secondItem="JbJ-r5-UlE" secondAttribute="topMargin" constant="3" id="6aQ-Uf-Gxi"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="S3E-mq-JWp" secondAttribute="bottom" constant="3" id="Scj-q3-rlI"/>
+                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="leading" secondItem="JbJ-r5-UlE" secondAttribute="leadingMargin" id="pYI-lD-VLW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="PlaylistTableViewCell"/>
+                                <connections>
+                                    <outlet property="label" destination="S3E-mq-JWp" id="oeF-8d-pdr"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="o2c-X0-lE7" id="9k5-Z5-L3P"/>
+                            <outlet property="delegate" destination="o2c-X0-lE7" id="Onu-Qb-o6O"/>
+                        </connections>
+                    </tableView>
+                    <nil key="simulatedTopBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vbV-g6-psJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="382" y="186"/>
         </scene>
     </scenes>
     <resources>
