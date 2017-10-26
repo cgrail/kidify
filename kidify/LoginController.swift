@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class LoginController: UIViewController,SPTStoreControllerDelegate, WebViewControllerDelegate {
+class LoginController: UIViewController, WebViewControllerDelegate {
     
     @IBOutlet var statusLabel: UILabel!
     
@@ -79,21 +79,11 @@ class LoginController: UIViewController,SPTStoreControllerDelegate, WebViewContr
         //self.performSegue(withIdentifier: "ShowPlayer", sender: nil)
     }
     
-    internal func productViewControllerDidFinish(_ viewController: SPTStoreViewController) {
-        self.statusLabel.text = "App Store Dismissed."
-        viewController.dismiss(animated: true, completion: {})
-    }
-    
     func openLoginPage() {
         self.statusLabel.text = "Logging in..."
-        let auth = SPTAuth.defaultInstance()
-        if SPTAuth.supportsApplicationAuthentication() {
-            UIApplication.shared.openURL(auth!.spotifyAppAuthenticationURL())
-        } else {
-            self.authViewController = self.getAuthViewController(withURL: SPTAuth.defaultInstance().spotifyWebAuthenticationURL())
-            self.definesPresentationContext = true
-            self.present(self.authViewController!, animated: true, completion: {})
-        }
+        self.authViewController = self.getAuthViewController(withURL: SPTAuth.defaultInstance().spotifyWebAuthenticationURL())
+        self.definesPresentationContext = true
+        self.present(self.authViewController!, animated: true, completion: {})
     }
     
     func renewTokenAndShowPlayer() {
@@ -102,7 +92,6 @@ class LoginController: UIViewController,SPTStoreControllerDelegate, WebViewContr
             SPTAuth.defaultInstance().session = session
             if error != nil {
                 self.statusLabel.text = "Refreshing token failed."
-                print("*** Error renewing session: \(error)")
                 return
             }
             self.showPlayer()
@@ -110,24 +99,12 @@ class LoginController: UIViewController,SPTStoreControllerDelegate, WebViewContr
     }
     
     func webViewControllerDidFinish(_ controller: WebViewController) {
-        // User tapped the close button. Treat as auth error
+        self.statusLabel.text = "Authentication aborted"
     }
     
     @IBAction func login(_ sender: Any) {
         self.openLoginPage()
     }
     
-    func clearCookiesClicked(_ sender: UIButton) {
-        let storage = HTTPCookieStorage.shared
-        for cookie: HTTPCookie in storage.cookies! {
-            if (cookie.domain as NSString).range(of: "spotify.").length > 0 || (cookie.domain as NSString).range(of: "facebook.").length > 0 {
-                storage.deleteCookie(cookie)
-            }
-        }
-        UserDefaults.standard.synchronize()
-        self.statusLabel.text! = "Cookies cleared."
-    }
-
-
 }
 
