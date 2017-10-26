@@ -9,17 +9,17 @@
 import UIKit
 
 class PlayListsViewController: UITableViewController {
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
     //MARK: Properties
     
     var playlists = [String]()
@@ -27,7 +27,7 @@ class PlayListsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadPlaylists()
+        getSpotifyPlaylists()
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,7 +45,7 @@ class PlayListsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "PlaylistTableViewCell"
         
@@ -55,16 +55,26 @@ class PlayListsViewController: UITableViewController {
         
         let playlist = playlists[indexPath.row]
         cell.label.text = playlist
-
+        
         return cell
     }
     
-    //MARK: Private Methods
-    
-    private func loadPlaylists() {
-
+    private func getSpotifyPlaylists() {
         
-        playlists += ["Test1" , "Test 2"]
+        let session = SPTAuth.defaultInstance().session
+        
+        let playlistRequest = try! SPTPlaylistList.createRequestForGettingPlaylists(forUser: session?.canonicalUsername, withAccessToken: session?.accessToken)
+        
+        SPTRequest.sharedHandler().perform(playlistRequest) { [weak self] (error, response, data) in
+            let list = try! SPTPlaylistList(from: data, with: response)
+            
+            for playList in list.items  {
+                if let playlist = playList as? SPTPartialPlaylist {
+                    self?.playlists.append(playlist.name)
+                }
+            }
+            self?.tableView.reloadData()
+        }
+
     }
-    
 }
