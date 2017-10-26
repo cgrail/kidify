@@ -7,8 +7,18 @@
 //
 
 import UIKit
+import SpotifyKit
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+let clientId = "22e68ee4229647f6bbd29ae1628d14e7"
+let redirectUrl = "kidify://returnAfterLogin"
+
+let spotifyManager = SpotifyManager(with: SpotifyManager.SpotifyDeveloperApplication(
+    clientId:     clientId,
+    clientSecret: clientId,
+    redirectUri:  redirectUrl
+))
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate {
@@ -24,8 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        SPTAuth.defaultInstance().clientID = "22e68ee4229647f6bbd29ae1628d14e7"
-        SPTAuth.defaultInstance().redirectURL = URL(string:"kidify://returnAfterLogin")
+        SPTAuth.defaultInstance().clientID = clientId
+        SPTAuth.defaultInstance().redirectURL = URL(string:redirectUrl)
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope]
         
         return true
@@ -33,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         // Ask SPTAuth if the URL given is a Spotify authentication callback
+        
+        spotifyManager.saveToken(from: url)
         
         print("The URL: \(url)")
         if SPTAuth.defaultInstance().canHandle(url) {

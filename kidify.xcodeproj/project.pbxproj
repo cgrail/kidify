@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E8357FB1FA2191800553728 /* PlayListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8357FA1FA2191800553728 /* PlayListsViewController.swift */; };
 		0E8357FD1FA2271700553728 /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */; };
+		0EDBAD811FA2305B00EFAA1C /* SpotifyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDBAD821FA2305B00EFAA1C /* SpotifyKit.framework */; };
 		0EF670EC1FA1E3980025BBF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF670EB1FA1E3980025BBF2 /* AppDelegate.swift */; };
 		0EF670EE1FA1E3980025BBF2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF670ED1FA1E3980025BBF2 /* LoginController.swift */; };
 		0EF670F11FA1E3980025BBF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EF670EF1FA1E3980025BBF2 /* Main.storyboard */; };
@@ -18,11 +19,13 @@
 		0EF671011FA2024D0025BBF2 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF670FF1FA2024D0025BBF2 /* SpotifyAudioPlayback.framework */; };
 		0EF671041FA202DB0025BBF2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF671031FA202D00025BBF2 /* AVFoundation.framework */; };
 		0EF6710B1FA207C10025BBF2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6710A1FA207C10025BBF2 /* WebViewController.swift */; };
+		A2CB75E88F52682076DEFE1F /* Pods_kidify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A229FF9D4392352E304FEACE /* Pods_kidify.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E8357FA1FA2191800553728 /* PlayListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListsViewController.swift; sourceTree = "<group>"; };
 		0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
+		0EDBAD821FA2305B00EFAA1C /* SpotifyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SpotifyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF670E81FA1E3980025BBF2 /* kidify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kidify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF670EB1FA1E3980025BBF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EF670ED1FA1E3980025BBF2 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -35,6 +38,9 @@
 		0EF671031FA202D00025BBF2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0EF671061FA207440025BBF2 /* kidify-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "kidify-Bridging-Header.h"; sourceTree = "<group>"; };
 		0EF6710A1FA207C10025BBF2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		648E6B3DC47B9F32B7418C4A /* Pods-kidify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kidify.release.xcconfig"; path = "Pods/Target Support Files/Pods-kidify/Pods-kidify.release.xcconfig"; sourceTree = "<group>"; };
+		A229FF9D4392352E304FEACE /* Pods_kidify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kidify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E28FB4D633961A384D85E6D0 /* Pods-kidify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kidify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kidify/Pods-kidify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,9 +48,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EDBAD811FA2305B00EFAA1C /* SpotifyKit.framework in Frameworks */,
 				0EF671041FA202DB0025BBF2 /* AVFoundation.framework in Frameworks */,
 				0EF671001FA2024D0025BBF2 /* SpotifyAuthentication.framework in Frameworks */,
 				0EF671011FA2024D0025BBF2 /* SpotifyAudioPlayback.framework in Frameworks */,
+				A2CB75E88F52682076DEFE1F /* Pods_kidify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +66,7 @@
 				0EF670E91FA1E3980025BBF2 /* Products */,
 				0EF671021FA202D00025BBF2 /* Frameworks */,
 				0EF671061FA207440025BBF2 /* kidify-Bridging-Header.h */,
+				DE62AA57A6E06B8ABC216A84 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,9 +107,20 @@
 		0EF671021FA202D00025BBF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0EDBAD821FA2305B00EFAA1C /* SpotifyKit.framework */,
 				0EF671031FA202D00025BBF2 /* AVFoundation.framework */,
+				A229FF9D4392352E304FEACE /* Pods_kidify.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE62AA57A6E06B8ABC216A84 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E28FB4D633961A384D85E6D0 /* Pods-kidify.debug.xcconfig */,
+				648E6B3DC47B9F32B7418C4A /* Pods-kidify.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,9 +130,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0EF670FA1FA1E3980025BBF2 /* Build configuration list for PBXNativeTarget "kidify" */;
 			buildPhases = (
+				A9C5EB6AEC0FCEF4897CF9D8 /* [CP] Check Pods Manifest.lock */,
 				0EF670E41FA1E3980025BBF2 /* Sources */,
 				0EF670E51FA1E3980025BBF2 /* Frameworks */,
 				0EF670E61FA1E3980025BBF2 /* Resources */,
+				9B83BE668226AC9A83FB0905 /* [CP] Embed Pods Frameworks */,
+				EA39C658190DE36D238FB425 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,6 +193,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9B83BE668226AC9A83FB0905 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-kidify/Pods-kidify-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SpotifyKit/SpotifyKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpotifyKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kidify/Pods-kidify-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9C5EB6AEC0FCEF4897CF9D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-kidify-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA39C658190DE36D238FB425 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kidify/Pods-kidify-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0EF670E41FA1E3980025BBF2 /* Sources */ = {
@@ -315,6 +392,7 @@
 		};
 		0EF670FB1FA1E3980025BBF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E28FB4D633961A384D85E6D0 /* Pods-kidify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -338,6 +416,7 @@
 		};
 		0EF670FC1FA1E3980025BBF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 648E6B3DC47B9F32B7418C4A /* Pods-kidify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

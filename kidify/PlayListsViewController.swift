@@ -28,6 +28,13 @@ class PlayListsViewController: UITableViewController {
         super.viewDidLoad()
         
         loadPlaylists()
+        
+        spotifyManager.authorize()
+        
+        
+        spotifyManager.myProfile { profile in
+            debugPrint(profile.name)
+        }
     }
     
     override func didReceiveMemoryWarning() {
