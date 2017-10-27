@@ -14,6 +14,7 @@ class AlbumsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
+        self.navigationItem.hidesBackButton = false
     }
 
     // MARK: - Table view data source
@@ -42,14 +43,31 @@ class AlbumsTableViewController: UITableViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+        case "ShowTracks":
+            guard let trackController = segue.destination as? TracksTableViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedAlbum = sender as? AlbumTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedAlbum) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let album = albums[indexPath.row]
+            trackController.tracks = album.tracks
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+        }
+        
     }
-    */
 
 }

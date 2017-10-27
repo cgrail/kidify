@@ -99,7 +99,7 @@
             </objects>
             <point key="canvasLocation" x="-611" y="186"/>
         </scene>
-        <!--Albums-->
+        <!--Playlists-->
         <scene sceneID="Z8c-qX-l9Q">
             <objects>
                 <tableViewController id="o2c-X0-lE7" customClass="PlayListsViewController" customModule="kidify" customModuleProvider="target" sceneMemberID="viewController">
@@ -116,17 +116,17 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3E-mq-JWp">
-                                            <rect key="frame" x="20" y="14" width="374" height="16"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="S3E-mq-JWp" secondAttribute="trailing" id="33E-gd-GyQ"/>
-                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="top" secondItem="JbJ-r5-UlE" secondAttribute="topMargin" constant="3" id="6aQ-Uf-Gxi"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="S3E-mq-JWp" secondAttribute="bottom" constant="3" id="Scj-q3-rlI"/>
-                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="leading" secondItem="JbJ-r5-UlE" secondAttribute="leadingMargin" id="pYI-lD-VLW"/>
+                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="top" secondItem="JbJ-r5-UlE" secondAttribute="topMargin" id="HAO-nz-EN3"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="S3E-mq-JWp" secondAttribute="bottom" id="Wec-Q7-2jn"/>
+                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="trailing" secondItem="JbJ-r5-UlE" secondAttribute="trailingMargin" id="jMa-0z-jAk"/>
+                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="leading" secondItem="JbJ-r5-UlE" secondAttribute="leadingMargin" id="qZE-uz-Urk"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="PlaylistTableViewCell"/>
@@ -141,14 +141,14 @@
                             <outlet property="delegate" destination="o2c-X0-lE7" id="Onu-Qb-o6O"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Albums" id="fXJ-er-UyE"/>
+                    <navigationItem key="navigationItem" title="Playlists" id="fXJ-er-UyE"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbV-g6-psJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="382" y="186"/>
         </scene>
-        <!--Albums Table View Controller-->
+        <!--Albums-->
         <scene sceneID="KgA-06-LUv">
             <objects>
                 <tableViewController id="6ib-lb-9iR" customClass="AlbumsTableViewController" customModule="kidify" customModuleProvider="target" sceneMemberID="viewController">
@@ -165,21 +165,22 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Albums" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-Dy-auF">
-                                            <rect key="frame" x="20" y="3" width="374" height="37.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Ehf-Dy-auF" firstAttribute="leading" secondItem="IaT-cW-JLH" secondAttribute="leadingMargin" id="Nbj-Yf-U8f"/>
-                                        <constraint firstItem="Ehf-Dy-auF" firstAttribute="trailing" secondItem="IaT-cW-JLH" secondAttribute="trailingMargin" id="OHF-GD-VNg"/>
-                                        <constraint firstItem="Ehf-Dy-auF" firstAttribute="top" secondItem="IaT-cW-JLH" secondAttribute="top" constant="3" id="OK2-HP-phd"/>
-                                        <constraint firstAttribute="bottom" secondItem="Ehf-Dy-auF" secondAttribute="bottom" constant="3" id="rBu-sR-tXk"/>
+                                        <constraint firstItem="Ehf-Dy-auF" firstAttribute="top" secondItem="IaT-cW-JLH" secondAttribute="top" id="4tJ-Jj-fQf"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ehf-Dy-auF" secondAttribute="trailing" id="Nfd-hX-7gB"/>
+                                        <constraint firstItem="Ehf-Dy-auF" firstAttribute="leading" secondItem="IaT-cW-JLH" secondAttribute="leading" id="dC3-Z1-cFr"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ehf-Dy-auF" secondAttribute="bottom" id="dKu-mJ-uBR"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="label" destination="Ehf-Dy-auF" id="mWX-dm-ung"/>
+                                    <segue destination="SY7-6y-PgB" kind="show" identifier="ShowTracks" id="vbB-l3-G4F"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -188,10 +189,57 @@
                             <outlet property="delegate" destination="6ib-lb-9iR" id="bGp-Jm-4PP"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Albums" id="uHk-fO-HQg"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Dv-SN-BFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1197" y="187"/>
+        </scene>
+        <!--Tracks-->
+        <scene sceneID="VB3-yI-tzo">
+            <objects>
+                <tableViewController id="SY7-6y-PgB" customClass="TracksTableViewController" customModule="kidify" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F14-f0-Qk0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackTableViewCell" id="Y0M-ya-5sI" customClass="TrackTableViewCell" customModule="kidify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y0M-ya-5sI" id="YLp-g5-uTb">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCJ-HE-2uQ">
+                                            <rect key="frame" x="20" y="11" width="374" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="YCJ-HE-2uQ" secondAttribute="trailing" id="9oO-0W-MYK"/>
+                                        <constraint firstItem="YCJ-HE-2uQ" firstAttribute="leading" secondItem="YLp-g5-uTb" secondAttribute="leadingMargin" id="D4j-Ta-NUj"/>
+                                        <constraint firstItem="YCJ-HE-2uQ" firstAttribute="top" secondItem="YLp-g5-uTb" secondAttribute="topMargin" id="cCm-la-srg"/>
+                                        <constraint firstItem="YCJ-HE-2uQ" firstAttribute="bottom" secondItem="YLp-g5-uTb" secondAttribute="bottomMargin" id="zRB-vI-xBF"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="YCJ-HE-2uQ" id="VUy-mY-XTo"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SY7-6y-PgB" id="MzC-pq-J3Z"/>
+                            <outlet property="delegate" destination="SY7-6y-PgB" id="kbF-7W-Ztb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tracks" id="xme-pN-TvP"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MHh-6v-LVr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2129" y="186"/>
         </scene>
     </scenes>
     <resources>

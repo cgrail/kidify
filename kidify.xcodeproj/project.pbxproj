@@ -11,6 +11,8 @@
 		0E63DC941FA3215100BFD107 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */; };
 		0E63DC991FA32DA900BFD107 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC981FA32DA900BFD107 /* Playlist.swift */; };
 		0E63DC9C1FA32DD400BFD107 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC9B1FA32DD400BFD107 /* Album.swift */; };
+		0E63DC9E1FA348CF00BFD107 /* TracksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC9D1FA348CF00BFD107 /* TracksTableViewController.swift */; };
+		0E63DCA01FA3490100BFD107 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC9F1FA3490100BFD107 /* TrackTableViewCell.swift */; };
 		0E8357FB1FA2191800553728 /* PlayListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8357FA1FA2191800553728 /* PlayListsViewController.swift */; };
 		0E8357FD1FA2271700553728 /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */; };
 		0EDBAD841FA233B900EFAA1C /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDBAD831FA233B900EFAA1C /* SpotifyMetadata.framework */; };
@@ -30,6 +32,8 @@
 		0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		0E63DC981FA32DA900BFD107 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		0E63DC9B1FA32DD400BFD107 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		0E63DC9D1FA348CF00BFD107 /* TracksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksTableViewController.swift; sourceTree = "<group>"; };
+		0E63DC9F1FA3490100BFD107 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		0E8357FA1FA2191800553728 /* PlayListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListsViewController.swift; sourceTree = "<group>"; };
 		0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
 		0EDBAD831FA233B900EFAA1C /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */,
 				0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */,
 				0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */,
+				0E63DC9D1FA348CF00BFD107 /* TracksTableViewController.swift */,
+				0E63DC9F1FA3490100BFD107 /* TrackTableViewCell.swift */,
 				0E63DC9A1FA32DAE00BFD107 /* VO */,
 			);
 			path = kidify;
@@ -203,12 +209,14 @@
 				0E8357FD1FA2271700553728 /* PlaylistTableViewCell.swift in Sources */,
 				0E63DC921FA3210900BFD107 /* AlbumsTableViewController.swift in Sources */,
 				0E8357FB1FA2191800553728 /* PlayListsViewController.swift in Sources */,
+				0E63DC9E1FA348CF00BFD107 /* TracksTableViewController.swift in Sources */,
 				0E63DC991FA32DA900BFD107 /* Playlist.swift in Sources */,
 				0EF670EE1FA1E3980025BBF2 /* LoginController.swift in Sources */,
 				0E63DC9C1FA32DD400BFD107 /* Album.swift in Sources */,
 				0E63DC941FA3215100BFD107 /* AlbumTableViewCell.swift in Sources */,
 				0EF670EC1FA1E3980025BBF2 /* AppDelegate.swift in Sources */,
 				0EF6710B1FA207C10025BBF2 /* WebViewController.swift in Sources */,
+				0E63DCA01FA3490100BFD107 /* TrackTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
