@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope]
         
         Theme.dark.apply()
+        UIApplication.shared.isIdleTimerDisabled = true
         
         return true
     }
