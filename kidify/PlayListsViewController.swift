@@ -10,7 +10,7 @@ import UIKit
 
 class PlayListsViewController: UITableViewController {
     
-    var playlists = [String]()
+    var playlists = [Playlist]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class PlayListsViewController: UITableViewController {
         }
         
         let playlist = playlists[indexPath.row]
-        cell.label.text = playlist
+        cell.label.text = playlist.name
         
         return cell
     }
@@ -64,7 +64,10 @@ class PlayListsViewController: UITableViewController {
             
             for playList in list.items  {
                 if let playlist = playList as? SPTPartialPlaylist {
-                    self?.playlists.append(playlist.name)
+                    
+                    let playlistVO = Playlist(name: playlist.name)
+                    
+                    self?.playlists.append(playlistVO)
                     
                     let stringFromUrl =  playlist.uri.absoluteString
                     let uri = URL(string: stringFromUrl)
@@ -75,7 +78,7 @@ class PlayListsViewController: UITableViewController {
                             
                             for track in s.firstTrackPage.items {
                                 if let thistrack = track as? SPTPlaylistTrack {
-                                    debugPrint(thistrack.album.name)
+                                    playlistVO.albums.insert(Album(name: thistrack.album.name))
                                 }
                             }
                         }
@@ -93,7 +96,26 @@ class PlayListsViewController: UITableViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        self.navigationController?.isNavigationBarHidden = true
+        switch(segue.identifier ?? "") {
+        case "ShowAlbums":
+            guard let albumsControlelr = segue.destination as? AlbumsTableViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedPlaylist = sender as? PlaylistTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedPlaylist) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let playlist = playlists[indexPath.row]
+            albumsControlelr.albums = Array(playlist.albums)
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+        }
         
     }
 }

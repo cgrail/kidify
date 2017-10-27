@@ -132,7 +132,7 @@
                                 <accessibility key="accessibilityConfiguration" identifier="PlaylistTableViewCell"/>
                                 <connections>
                                     <outlet property="label" destination="S3E-mq-JWp" id="oeF-8d-pdr"/>
-                                    <segue destination="6ib-lb-9iR" kind="show" id="59c-XO-6De"/>
+                                    <segue destination="6ib-lb-9iR" kind="show" identifier="ShowAlbums" id="59c-XO-6De"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -157,7 +157,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumTableViewCell" id="D6Z-Br-Fyz" customClass="AlbumTableViewCell" customModule="kidify" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumTableViewCell" id="D6Z-Br-Fyz" customClass="AlbumTableViewCell" customModule="kidify" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D6Z-Br-Fyz" id="IaT-cW-JLH">
@@ -165,7 +165,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Albums" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-Dy-auF">
-                                            <rect key="frame" x="20" y="3" width="374" height="38"/>
+                                            <rect key="frame" x="20" y="3" width="374" height="37.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

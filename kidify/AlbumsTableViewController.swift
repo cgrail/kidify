@@ -10,7 +10,7 @@ import UIKit
 
 class AlbumsTableViewController: UITableViewController {
 
-    private let albums = ["1" , "2"]
+    public var albums = [Album]()
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -34,8 +34,9 @@ class AlbumsTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of AlbumTableViewCell.")
         }
         
+        
         let album = albums[indexPath.row]
-        cell.label.text = album
+        cell.label.text = album.name
         
         return cell
     }
