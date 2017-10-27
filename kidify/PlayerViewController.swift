@@ -24,8 +24,6 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.hidesBackButton = false
-        self.view.backgroundColor = Theme.current.backgroundColor
-        
         
         SPTAudioStreamingController.sharedInstance().delegate = self
         SPTAudioStreamingController.sharedInstance().playbackDelegate = self
