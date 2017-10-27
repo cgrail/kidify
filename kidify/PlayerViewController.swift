@@ -24,6 +24,8 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.hidesBackButton = false
+        self.view.backgroundColor = Theme.current.backgroundColor
+        
         
         SPTAudioStreamingController.sharedInstance().delegate = self
         SPTAudioStreamingController.sharedInstance().playbackDelegate = self
@@ -49,7 +51,11 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         SPTTrack.track(withURI: URL(string: currentTrack.uri)!, accessToken: auth.session.accessToken, market: nil) { error, result in
             
             if let track = result as? SPTTrack {
-                guard let largestCover = track.album.largestCover else {
+                guard let album = track.album else {
+                    self.cover.image = nil
+                    return
+                }
+                guard let largestCover = album.largestCover else {
                     self.cover.image = nil
                     return
                 }

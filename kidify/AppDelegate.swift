@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SPTAuth.defaultInstance().redirectURL = URL(string:"kidify://returnAfterLogin")
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope]
         
+        Theme.dark.apply()
+        
         return true
     }
     
