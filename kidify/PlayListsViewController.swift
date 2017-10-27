@@ -78,7 +78,24 @@ class PlayListsViewController: UITableViewController {
                             
                             for track in s.firstTrackPage.items {
                                 if let thistrack = track as? SPTPlaylistTrack {
-                                    playlistVO.albums.insert(Album(name: thistrack.album.name))
+                                    let albumVo = Album(name: thistrack.album.name)
+                                    if(playlistVO.albums.contains(albumVo)){
+                                        continue
+                                    }
+                                    playlistVO.albums.insert(albumVo)
+                                    
+                                    SPTAlbum.album(withURI: thistrack.album.uri, accessToken: session?.accessToken, market: nil)  { (error, albumResponse) in
+                                        if let album = albumResponse as? SPTAlbum {
+                                            if let trackPage = album.firstTrackPage {
+                                                for albumTrack in trackPage.items {
+                                                    if let t = albumTrack as? SPTPartialTrack {
+                                                        albumVo.tracks.append(t)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        
+                                    }
                                 }
                             }
                         }

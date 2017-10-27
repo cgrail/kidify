@@ -101,8 +101,8 @@
 				0EF670F41FA1E3980025BBF2 /* LaunchScreen.storyboard */,
 				0EF670F71FA1E3980025BBF2 /* Info.plist */,
 				0E8357FA1FA2191800553728 /* PlayListsViewController.swift */,
-				0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */,
 				0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */,
+				0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */,
 				0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */,
 				0E63DC9A1FA32DAE00BFD107 /* VO */,
 			);

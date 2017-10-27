@@ -12,6 +12,8 @@ class Album: Hashable {
     
     public var name: String
     
+    public var tracks = [SPTPartialTrack]()
+    
     init(name: String) {
         self.name = name
     }
