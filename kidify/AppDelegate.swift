@@ -11,7 +11,7 @@ import UIKit
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var session: SPTSession?
@@ -51,3 +51,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate
         return false
     }
 }
+

@@ -77,6 +77,9 @@ class LoginController: UIViewController, WebViewControllerDelegate {
     func showPlayer() {
         self.firstLoad = false
         self.statusLabel.text = "Logged in."
+        if let navi = self.navigationController as? NavigationViewController {
+            navi.handleNewSession()
+        }
         self.performSegue(withIdentifier: "ShowPlaylists", sender: nil)
     }
     
