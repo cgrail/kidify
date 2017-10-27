@@ -57,7 +57,7 @@ enum Theme: Int {
     case .default:
       return UIColor.white
     case .dark:
-      return UIColor(white: 0.4, alpha: 1.0)
+      return UIColor.black
     }
   }
   

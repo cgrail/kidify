@@ -14,6 +14,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     @IBOutlet var artist: UILabel!
     @IBOutlet var trackTitle: UILabel!
     @IBOutlet var progressSlider: UISlider!
+    @IBOutlet var playPauseButton: UIButton!
     
     public var currentTrack: SPTPartialTrack?
     
@@ -124,7 +125,14 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
             }
         }
     }
-
+    
+    @IBAction func playPause(_ sender: Any) {
+        if let player = SPTAudioStreamingController.sharedInstance() {
+            let newState = !player.playbackState.isPlaying
+            player.setIsPlaying(newState, callback: nil)
+        }
+    }
+    
     @IBAction func jumpToPosition(_ sender: UISlider) {
         if let currentTrack = SPTAudioStreamingController.sharedInstance().metadata.currentTrack {
             let position = sender.value * Float(currentTrack.duration)
