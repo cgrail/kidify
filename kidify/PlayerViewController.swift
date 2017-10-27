@@ -27,8 +27,6 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         
         SPTAudioStreamingController.sharedInstance().delegate = self
         SPTAudioStreamingController.sharedInstance().playbackDelegate = self
-        //SPTAudioStreamingController.sharedInstance().diskCache = SPTDiskCache() /* capacity: 1024 * 1024 * 64 */
-        
         
         if let track = currentTrack {
             playTrack(track: track)
@@ -51,7 +49,11 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         SPTTrack.track(withURI: URL(string: currentTrack.uri)!, accessToken: auth.session.accessToken, market: nil) { error, result in
             
             if let track = result as? SPTTrack {
-                let imageURL = track.album.largestCover.imageURL
+                guard let largestCover = track.album.largestCover else {
+                    self.cover.image = nil
+                    return
+                }
+                let imageURL = largestCover.imageURL
                 if imageURL == nil {
                     print("Album \(track.album) doesn't have any images!")
                     self.cover.image = nil
