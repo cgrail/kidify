@@ -10,6 +10,7 @@ import UIKit
 
 class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate  {
 
+    @IBOutlet var cover: UIImageView!
     @IBOutlet var artist: UILabel!
     @IBOutlet var trackTitle: UILabel!
     @IBOutlet var progressSlider: UISlider!
@@ -41,6 +42,39 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         if let currentTrack = SPTAudioStreamingController.sharedInstance().metadata.currentTrack{
             self.artist.text = currentTrack.artistName
             self.trackTitle.text = currentTrack.name
+            updateCover(currentTrack)
+        }
+    }
+    
+    func updateCover(_ currentTrack: SPTPlaybackTrack) {
+        let auth = SPTAuth.defaultInstance()!
+        SPTTrack.track(withURI: URL(string: currentTrack.uri)!, accessToken: auth.session.accessToken, market: nil) { error, result in
+            
+            if let track = result as? SPTTrack {
+                let imageURL = track.album.largestCover.imageURL
+                if imageURL == nil {
+                    print("Album \(track.album) doesn't have any images!")
+                    self.cover.image = nil
+                    return
+                }
+                DispatchQueue.global().async {
+                    do {
+                        let imageData = try Data(contentsOf: imageURL!, options: [])
+                        let image = UIImage(data: imageData)
+                        // …and back to the main queue to display the image.
+                        DispatchQueue.main.async {
+                            self.cover.image = image
+                            if image == nil {
+                                print("Couldn't load cover image with error: \(String(describing: error))")
+                                return
+                            }
+                        }
+                        
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
         }
     }
     
