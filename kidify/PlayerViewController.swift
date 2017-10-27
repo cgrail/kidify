@@ -56,7 +56,16 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didStopPlayingTrack trackUri: String) {
-        print("Finishing: \(trackUri)")
+        var reachedLastSong = false
+        for track in tracks {
+            if(reachedLastSong) {
+                playTrack(track: track)
+                return
+            }
+            if(track.uri.absoluteString == trackUri) {
+                reachedLastSong = true
+            }
+        }
     }
     
     
