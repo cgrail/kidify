@@ -25,6 +25,7 @@ class LoginController: UIViewController, WebViewControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
         let auth = SPTAuth.defaultInstance()
         // Uncomment to turn off native/SSO/flip-flop login flow
         

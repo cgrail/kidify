@@ -10,24 +10,18 @@ import UIKit
 
 class PlayListsViewController: UITableViewController {
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    //MARK: Properties
-    
     var playlists = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getSpotifyPlaylists()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.hidesBackButton = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,10 +65,35 @@ class PlayListsViewController: UITableViewController {
             for playList in list.items  {
                 if let playlist = playList as? SPTPartialPlaylist {
                     self?.playlists.append(playlist.name)
+                    
+                    let stringFromUrl =  playlist.uri.absoluteString
+                    let uri = URL(string: stringFromUrl)
+                    
+                    SPTPlaylistSnapshot.playlist(withURI: uri, accessToken: session?.accessToken) { (error, snap) in
+                        if let s = snap as? SPTPlaylistSnapshot {
+                            
+                            
+                            for track in s.firstTrackPage.items {
+                                if let thistrack = track as? SPTPlaylistTrack {
+                                    debugPrint(thistrack.album.name)
+                                }
+                            }
+                        }
+                    }
                 }
             }
             self?.tableView.reloadData()
         }
-
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        super.prepare(for: segue, sender: sender)
+        
+        self.navigationController?.isNavigationBarHidden = true
+        
     }
 }

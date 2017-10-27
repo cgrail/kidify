@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E63DC921FA3210900BFD107 /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */; };
+		0E63DC941FA3215100BFD107 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */; };
 		0E8357FB1FA2191800553728 /* PlayListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8357FA1FA2191800553728 /* PlayListsViewController.swift */; };
 		0E8357FD1FA2271700553728 /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */; };
 		0EDBAD841FA233B900EFAA1C /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDBAD831FA233B900EFAA1C /* SpotifyMetadata.framework */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
+		0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		0E8357FA1FA2191800553728 /* PlayListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListsViewController.swift; sourceTree = "<group>"; };
 		0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
 		0EDBAD831FA233B900EFAA1C /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
@@ -84,7 +88,9 @@
 				0EF670F41FA1E3980025BBF2 /* LaunchScreen.storyboard */,
 				0EF670F71FA1E3980025BBF2 /* Info.plist */,
 				0E8357FA1FA2191800553728 /* PlayListsViewController.swift */,
+				0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */,
 				0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */,
+				0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */,
 			);
 			path = kidify;
 			sourceTree = "<group>";
@@ -181,8 +187,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E8357FD1FA2271700553728 /* PlaylistTableViewCell.swift in Sources */,
+				0E63DC921FA3210900BFD107 /* AlbumsTableViewController.swift in Sources */,
 				0E8357FB1FA2191800553728 /* PlayListsViewController.swift in Sources */,
 				0EF670EE1FA1E3980025BBF2 /* LoginController.swift in Sources */,
+				0E63DC941FA3215100BFD107 /* AlbumTableViewCell.swift in Sources */,
 				0EF670EC1FA1E3980025BBF2 /* AppDelegate.swift in Sources */,
 				0EF6710B1FA207C10025BBF2 /* WebViewController.swift in Sources */,
 			);
