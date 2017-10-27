@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate
         
         SPTAuth.defaultInstance().clientID = "22e68ee4229647f6bbd29ae1628d14e7"
         SPTAuth.defaultInstance().redirectURL = URL(string:"kidify://returnAfterLogin")
-        SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope]
+        SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope]
         
         return true
     }
