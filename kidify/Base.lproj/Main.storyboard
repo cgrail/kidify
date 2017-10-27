@@ -164,22 +164,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Albums" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-Dy-auF">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tur-zq-iOl">
+                                            <rect key="frame" x="20" y="11" width="374" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Ehf-Dy-auF" firstAttribute="top" secondItem="IaT-cW-JLH" secondAttribute="top" id="4tJ-Jj-fQf"/>
-                                        <constraint firstAttribute="trailing" secondItem="Ehf-Dy-auF" secondAttribute="trailing" id="Nfd-hX-7gB"/>
-                                        <constraint firstItem="Ehf-Dy-auF" firstAttribute="leading" secondItem="IaT-cW-JLH" secondAttribute="leading" id="dC3-Z1-cFr"/>
-                                        <constraint firstAttribute="bottom" secondItem="Ehf-Dy-auF" secondAttribute="bottom" id="dKu-mJ-uBR"/>
+                                        <constraint firstItem="tur-zq-iOl" firstAttribute="leading" secondItem="IaT-cW-JLH" secondAttribute="leadingMargin" id="6Y7-ge-7k5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="tur-zq-iOl" secondAttribute="trailing" id="b9h-Zq-FzB"/>
+                                        <constraint firstItem="tur-zq-iOl" firstAttribute="centerY" secondItem="IaT-cW-JLH" secondAttribute="centerY" id="nF8-g8-7Fg"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="label" destination="Ehf-Dy-auF" id="mWX-dm-ung"/>
+                                    <outlet property="label" destination="tur-zq-iOl" id="cn2-Lj-5Vq"/>
                                     <segue destination="SY7-6y-PgB" kind="show" identifier="ShowTracks" id="vbB-l3-G4F"/>
                                 </connections>
                             </tableViewCell>
@@ -227,6 +226,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="label" destination="YCJ-HE-2uQ" id="VUy-mY-XTo"/>
+                                    <segue destination="dYB-Rb-XC7" kind="show" identifier="ShowPlayer" id="ezR-mO-tyk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -240,6 +240,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHh-6v-LVr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2129" y="186"/>
+        </scene>
+        <!--Player-->
+        <scene sceneID="6Ea-NP-eOI">
+            <objects>
+                <viewController id="dYB-Rb-XC7" customClass="PlayerViewController" customModule="kidify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RtW-I2-nqz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDv-nq-Wxu">
+                                <rect key="frame" x="186.33333333333334" y="84" width="41.666666666666657" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-Oa-F1D">
+                                <rect key="frame" x="190.33333333333334" y="125" width="33.333333333333343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="n6k-Xn-w53">
+                                <rect key="frame" x="18" y="166" width="378" height="31"/>
+                                <connections>
+                                    <action selector="jumpToPosition:" destination="dYB-Rb-XC7" eventType="valueChanged" id="Dhw-Kz-k73"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="n6k-Xn-w53" firstAttribute="top" secondItem="HV0-Oa-F1D" secondAttribute="bottom" constant="20" id="9qZ-iB-9JX"/>
+                            <constraint firstItem="QDv-nq-Wxu" firstAttribute="top" secondItem="Jbs-48-W59" secondAttribute="top" constant="20" id="AXa-ac-PDG"/>
+                            <constraint firstItem="HV0-Oa-F1D" firstAttribute="centerX" secondItem="RtW-I2-nqz" secondAttribute="centerX" id="DHC-DE-XO3"/>
+                            <constraint firstItem="n6k-Xn-w53" firstAttribute="leading" secondItem="Jbs-48-W59" secondAttribute="leading" constant="20" id="K8R-r7-3bv"/>
+                            <constraint firstItem="n6k-Xn-w53" firstAttribute="centerX" secondItem="RtW-I2-nqz" secondAttribute="centerX" id="NmM-nI-UfN"/>
+                            <constraint firstItem="QDv-nq-Wxu" firstAttribute="centerX" secondItem="RtW-I2-nqz" secondAttribute="centerX" id="i8J-gF-svC"/>
+                            <constraint firstItem="n6k-Xn-w53" firstAttribute="centerX" secondItem="RtW-I2-nqz" secondAttribute="centerX" id="sOh-PB-xWY"/>
+                            <constraint firstItem="Jbs-48-W59" firstAttribute="trailing" secondItem="n6k-Xn-w53" secondAttribute="trailing" constant="20" id="uSH-Jk-PxT"/>
+                            <constraint firstItem="HV0-Oa-F1D" firstAttribute="top" secondItem="QDv-nq-Wxu" secondAttribute="bottom" constant="20" id="wMo-yM-mkK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jbs-48-W59"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Player" id="TJo-6Q-Kkh"/>
+                    <connections>
+                        <outlet property="artist" destination="QDv-nq-Wxu" id="blL-b9-iqB"/>
+                        <outlet property="progressSlider" destination="n6k-Xn-w53" id="BcD-Ci-ZTz"/>
+                        <outlet property="trackTitle" destination="HV0-Oa-F1D" id="CrN-Xp-vXS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6eR-90-saa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2892.753623188406" y="185.86956521739131"/>
         </scene>
     </scenes>
     <resources>

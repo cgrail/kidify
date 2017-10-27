@@ -42,13 +42,32 @@ class TracksTableViewController: UITableViewController{
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let track = tracks[indexPath.row]
-        debugPrint(track.uri.absoluteString)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        SPTAudioStreamingController.sharedInstance().playSpotifyURI(track.uri.absoluteString, startingWith: 0, startingWithPosition: 0) { error in
-            debugPrint("Playback error" + String(describing: error))
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+        case "ShowPlayer":
+            guard let playerViewController = segue.destination as? PlayerViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedTrack = sender as? TrackTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedTrack) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let track = tracks[indexPath.row]
+            playerViewController.currentTrack = track
+            playerViewController.tracks = tracks
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
+        
     }
     
 }
