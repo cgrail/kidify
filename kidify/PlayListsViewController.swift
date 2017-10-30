@@ -151,7 +151,7 @@ class PlayListsViewController: UITableViewController {
             }
             
             let playlist = playlists[indexPath.row]
-            albumsControlelr.albums = Array(playlist.albums)
+            albumsControlelr.albums = Array(playlist.albums).sorted(by: { $0.name < $1.name })
             
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
