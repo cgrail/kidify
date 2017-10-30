@@ -14,7 +14,6 @@ class PlayListsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         getSpotifyPlaylists()
     }
     
@@ -58,52 +57,76 @@ class PlayListsViewController: UITableViewController {
         let session = SPTAuth.defaultInstance().session
         
         let playlistRequest = try! SPTPlaylistList.createRequestForGettingPlaylists(forUser: session?.canonicalUsername, withAccessToken: session?.accessToken)
-        
-        SPTRequest.sharedHandler().perform(playlistRequest) { [weak self] (error, response, data) in
+        SPTRequest.sharedHandler().perform(playlistRequest) { (error, response, data) in
             let list = try! SPTPlaylistList(from: data, with: response)
-            
             for playList in list.items  {
                 if let playlist = playList as? SPTPartialPlaylist {
-                    
-                    let playlistVO = Playlist(name: playlist.name)
-                    
-                    self?.playlists.append(playlistVO)
-                    
-                    let stringFromUrl =  playlist.uri.absoluteString
-                    let uri = URL(string: stringFromUrl)
-                    
-                    SPTPlaylistSnapshot.playlist(withURI: uri, accessToken: session?.accessToken) { (error, snap) in
-                        if let s = snap as? SPTPlaylistSnapshot {
-                            
-                            
-                            for track in s.firstTrackPage.items {
-                                if let thistrack = track as? SPTPlaylistTrack {
-                                    let albumVo = Album(name: thistrack.album.name)
-                                    if(playlistVO.albums.contains(albumVo)){
-                                        continue
-                                    }
-                                    playlistVO.albums.insert(albumVo)
-                                    
-                                    SPTAlbum.album(withURI: thistrack.album.uri, accessToken: session?.accessToken, market: nil)  { (error, albumResponse) in
-                                        if let album = albumResponse as? SPTAlbum {
-                                            if let trackPage = album.firstTrackPage {
-                                                for albumTrack in trackPage.items {
-                                                    if let t = albumTrack as? SPTPartialTrack {
-                                                        albumVo.tracks.append(t)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        }
+                    if let uri = URL(string: playlist.uri.absoluteString){
+                        self.loadPlaylist(uri)
                     }
                 }
             }
-            self?.tableView.reloadData()
+            self.tableView.reloadData()
         }
+    }
+    
+    func loadPlaylist(_ uri: URL) {
+        SPTPlaylistSnapshot.playlist(withURI: uri, accessToken: getAccessToken()) { (error, response) in
+            if let playlist = response as? SPTPlaylistSnapshot {
+                let playlistVO = Playlist(name: playlist.name)
+                self.playlists.append(playlistVO)
+                self.handlePlaylist(playlist.firstTrackPage, playList: playlistVO)
+            }
+        }
+    }
+    
+    func handlePlaylist(_ currentPage: SPTListPage, playList: Playlist) {
+        guard let items = currentPage.items else {
+            return
+        }
+        for item in items {
+            if let track = item as? SPTPlaylistTrack {
+                handleTrack(track: track, playList: playList)
+            }
+        }
+        if(currentPage.hasNextPage) {
+            currentPage.requestNextPage(withAccessToken: getAccessToken()) { (error, response) in
+                if let page = response as? SPTListPage {
+                    self.handlePlaylist(page, playList: playList)
+                }
+            }
+        }
+        
+    }
+    
+    func handleTrack(track: SPTPlaylistTrack, playList: Playlist) {
+        let albumVo = Album(name: track.album.name)
+        if(playList.albums.contains(albumVo)){
+            return
+        }
+        playList.albums.insert(albumVo)
+        
+        SPTAlbum.album(withURI: track.album.uri, accessToken: getAccessToken(), market: nil)  { (error, albumResponse) in
+            guard let album = albumResponse as? SPTAlbum  else {
+                return
+            }
+            guard let trackPage = album.firstTrackPage else {
+                return
+            }
+            guard let albumTracks = trackPage.items else {
+                return
+            }
+            for albumTrack in albumTracks {
+                if let track = albumTrack as? SPTPartialTrack {
+                    albumVo.tracks.append(track)
+                }
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
+    func getAccessToken() -> String {
+        return SPTAuth.defaultInstance().session.accessToken
     }
     
     // MARK: - Navigation
