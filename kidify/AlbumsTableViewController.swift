@@ -44,7 +44,6 @@ class AlbumsTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of AlbumTableViewCell.")
         }
         
-        
         let album = albums[indexPath.row]
         cell.label.text = album.name
         
@@ -70,8 +69,7 @@ class AlbumsTableViewController: UITableViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            let album = albums[indexPath.row]
-            trackController.tracks = album.tracks
+            trackController.album = albums[indexPath.row]
             
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")

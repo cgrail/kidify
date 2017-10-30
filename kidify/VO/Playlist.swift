@@ -33,8 +33,6 @@ class Playlist {
                 if let page = playlist.firstTrackPage {
                     self.handlePlaylist(page, completeHandler)
                 }
-                completeHandler()
-                self.loaded = true
             }
         }
     }
@@ -45,42 +43,24 @@ class Playlist {
         }
         for item in items {
             if let track = item as? SPTPlaylistTrack {
-                handleTrack(track, completeHandler)
+                let albumVo = Album(name: track.album.name, uri: track.album.uri)
+                if(albums.contains(albumVo)){
+                    return
+                }
+                albums.insert(albumVo)
             }
         }
         if(currentPage.hasNextPage) {
+            debugPrint("Next page")
             currentPage.requestNextPage(withAccessToken: getAccessToken()) { (error, response) in
+                debugPrint("Next page")
                 if let page = response as? SPTListPage {
                     self.handlePlaylist(page, completeHandler)
                 }
             }
-        }
-        
-    }
-    
-    private func handleTrack(_ track: SPTPlaylistTrack, _ completeHandler: @escaping () -> Void) {
-        let albumVo = Album(name: track.album.name)
-        if(albums.contains(albumVo)){
-            return
-        }
-        albums.insert(albumVo)
-        
-        SPTAlbum.album(withURI: track.album.uri, accessToken: getAccessToken(), market: nil)  { (error, albumResponse) in
-            guard let album = albumResponse as? SPTAlbum  else {
-                return
-            }
-            guard let trackPage = album.firstTrackPage else {
-                return
-            }
-            guard let albumTracks = trackPage.items else {
-                return
-            }
-            for albumTrack in albumTracks {
-                if let track = albumTrack as? SPTPartialTrack {
-                    albumVo.tracks.append(track)
-                }
-            }
+        } else {
             completeHandler()
+            self.loaded = true
         }
     }
     

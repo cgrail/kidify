@@ -10,11 +10,19 @@ import UIKit
 
 class TracksTableViewController: UITableViewController{
     
+    public var album: Album?
     public var tracks = [SPTPartialTrack]()
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.hidesBackButton = false
+        
+        if let a = self.album {
+            a.loadAlbum{
+                self.tracks = a.tracks
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - Table view data source
