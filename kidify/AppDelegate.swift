@@ -24,8 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        let refreshUrl = URL(string: "https://web.grails.de/spotify_token")
+        
         SPTAuth.defaultInstance().clientID = "22e68ee4229647f6bbd29ae1628d14e7"
         SPTAuth.defaultInstance().redirectURL = URL(string:"kidify://returnAfterLogin")
+        SPTAuth.defaultInstance().tokenSwapURL = refreshUrl
+        SPTAuth.defaultInstance().tokenRefreshURL = refreshUrl
+        SPTAuth.defaultInstance().sessionUserDefaultsKey = "SpotifySession"
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope]
         
         Theme.dark.apply()
