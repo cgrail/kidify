@@ -62,71 +62,13 @@ class PlayListsViewController: UITableViewController {
             for playList in list.items  {
                 if let playlist = playList as? SPTPartialPlaylist {
                     if let uri = URL(string: playlist.uri.absoluteString){
-                        self.loadPlaylist(uri)
+                        let playlistVO = Playlist(name: playlist.name, uri: uri)
+                        self.playlists.append(playlistVO)
                     }
                 }
             }
             self.tableView.reloadData()
         }
-    }
-    
-    func loadPlaylist(_ uri: URL) {
-        SPTPlaylistSnapshot.playlist(withURI: uri, accessToken: getAccessToken()) { (error, response) in
-            if let playlist = response as? SPTPlaylistSnapshot {
-                let playlistVO = Playlist(name: playlist.name)
-                self.playlists.append(playlistVO)
-                self.handlePlaylist(playlist.firstTrackPage, playList: playlistVO)
-            }
-        }
-    }
-    
-    func handlePlaylist(_ currentPage: SPTListPage, playList: Playlist) {
-        guard let items = currentPage.items else {
-            return
-        }
-        for item in items {
-            if let track = item as? SPTPlaylistTrack {
-                handleTrack(track: track, playList: playList)
-            }
-        }
-        if(currentPage.hasNextPage) {
-            currentPage.requestNextPage(withAccessToken: getAccessToken()) { (error, response) in
-                if let page = response as? SPTListPage {
-                    self.handlePlaylist(page, playList: playList)
-                }
-            }
-        }
-        
-    }
-    
-    func handleTrack(track: SPTPlaylistTrack, playList: Playlist) {
-        let albumVo = Album(name: track.album.name)
-        if(playList.albums.contains(albumVo)){
-            return
-        }
-        playList.albums.insert(albumVo)
-        
-        SPTAlbum.album(withURI: track.album.uri, accessToken: getAccessToken(), market: nil)  { (error, albumResponse) in
-            guard let album = albumResponse as? SPTAlbum  else {
-                return
-            }
-            guard let trackPage = album.firstTrackPage else {
-                return
-            }
-            guard let albumTracks = trackPage.items else {
-                return
-            }
-            for albumTrack in albumTracks {
-                if let track = albumTrack as? SPTPartialTrack {
-                    albumVo.tracks.append(track)
-                }
-            }
-            self.tableView.reloadData()
-        }
-    }
-    
-    func getAccessToken() -> String {
-        return SPTAuth.defaultInstance().session.accessToken
     }
     
     // MARK: - Navigation
@@ -150,8 +92,7 @@ class PlayListsViewController: UITableViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            let playlist = playlists[indexPath.row]
-            albumsControlelr.albums = Array(playlist.albums).sorted(by: { $0.name < $1.name })
+            albumsControlelr.playlist = playlists[indexPath.row]
             
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")

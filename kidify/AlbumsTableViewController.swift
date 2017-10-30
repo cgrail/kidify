@@ -10,11 +10,20 @@ import UIKit
 
 class AlbumsTableViewController: UITableViewController {
 
-    public var albums = [Album]()
+    public var playlist: Playlist?
+    private var albums = [Album]()
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.hidesBackButton = false
+        
+        if let list = playlist {
+            list.loadAlbums {
+                self.albums = Array(list.albums).sorted(by: { $0.name < $1.name })
+                self.tableView.reloadData()
+            }
+        }
+        
     }
 
     // MARK: - Table view data source
