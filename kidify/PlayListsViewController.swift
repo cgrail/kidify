@@ -48,8 +48,28 @@ class PlayListsViewController: UITableViewController {
         
         let playlist = playlists[indexPath.row]
         cell.label.text = playlist.name
+        if let playlistImage = playlist.imageUrl {
+            downloadImage(url: playlistImage, cell: cell)
+        }
         
         return cell
+    }
+    
+    func downloadImage(url: URL, cell: PlaylistTableViewCell) {
+        getDataFromUrl(url: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() {
+                cell.playlistImage.image = UIImage(data: data)
+            }
+        }
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
     }
     
     private func getSpotifyPlaylists() {
@@ -66,6 +86,9 @@ class PlayListsViewController: UITableViewController {
                 if let playlist = playList as? SPTPartialPlaylist {
                     if let uri = URL(string: playlist.uri.absoluteString){
                         let playlistVO = Playlist(name: playlist.name, uri: uri)
+                        if let imageUrl = playlist.smallestImage.imageURL {
+                            playlistVO.imageUrl = imageUrl
+                        }
                         self.playlists.append(playlistVO)
                     }
                 }

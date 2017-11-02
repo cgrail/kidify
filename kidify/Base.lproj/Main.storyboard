@@ -116,22 +116,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v7O-wc-FRw">
+                                            <rect key="frame" x="10" y="2.3333333333333321" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="Qwr-65-F6f"/>
+                                                <constraint firstAttribute="height" constant="40" id="hmF-2M-tk5"/>
+                                            </constraints>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3E-mq-JWp">
-                                            <rect key="frame" x="20" y="12.333333333333334" width="374" height="20.333333333333329"/>
+                                            <rect key="frame" x="60" y="12.333333333333334" width="62.333333333333343" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="trailing" secondItem="JbJ-r5-UlE" secondAttribute="trailingMargin" id="DAr-rI-X6v"/>
+                                        <constraint firstItem="v7O-wc-FRw" firstAttribute="centerY" secondItem="JbJ-r5-UlE" secondAttribute="centerY" id="6rZ-Ps-dSF"/>
+                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="leading" secondItem="v7O-wc-FRw" secondAttribute="trailing" constant="10" id="LnW-qc-A7O"/>
+                                        <constraint firstItem="v7O-wc-FRw" firstAttribute="leading" secondItem="JbJ-r5-UlE" secondAttribute="leading" constant="10" id="NjQ-Y2-oqe"/>
                                         <constraint firstItem="S3E-mq-JWp" firstAttribute="centerY" secondItem="JbJ-r5-UlE" secondAttribute="centerY" id="QAd-Cy-han"/>
-                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="leading" secondItem="JbJ-r5-UlE" secondAttribute="leadingMargin" id="Ypb-RD-c3G"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="S3E-mq-JWp" secondAttribute="trailing" constant="20" symbolic="YES" id="qeN-GI-ngk"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="PlaylistTableViewCell"/>
                                 <connections>
                                     <outlet property="label" destination="S3E-mq-JWp" id="oeF-8d-pdr"/>
+                                    <outlet property="playlistImage" destination="v7O-wc-FRw" id="4YY-Oi-5D6"/>
                                     <segue destination="6ib-lb-9iR" kind="show" identifier="ShowAlbums" id="59c-XO-6De"/>
                                 </connections>
                             </tableViewCell>

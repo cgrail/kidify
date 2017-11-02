@@ -14,6 +14,8 @@ class Playlist {
     
     public var uri: URL
     
+    public var imageUrl: URL?
+    
     public var loaded = false
     
     public var albums = Set<Album>()
