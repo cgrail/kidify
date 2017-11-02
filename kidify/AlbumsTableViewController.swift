@@ -43,9 +43,9 @@ class AlbumsTableViewController: UITableViewController {
                     return result
                 }
             }
-            return 0
+            return Int.max
         } catch {
-            return 0
+            return Int.max
         }
     }
 
