@@ -58,9 +58,7 @@ class Playlist {
             }
         }
         if(currentPage.hasNextPage) {
-            debugPrint("Next page")
             currentPage.requestNextPage(withAccessToken: getAccessToken()) { (error, response) in
-                debugPrint("Next page")
                 if let page = response as? SPTListPage {
                     self.handlePlaylist(page, completeHandler)
                 }

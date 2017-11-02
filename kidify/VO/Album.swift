@@ -26,6 +26,7 @@ class Album: Hashable {
     public func loadAlbum(_ completeHandler: @escaping () -> Void) {
         if (loaded) {
             completeHandler()
+            return
         }
         SPTAlbum.album(withURI: uri, accessToken: getAccessToken(), market: nil)  { (error, albumResponse) in
             guard let album = albumResponse as? SPTAlbum  else {

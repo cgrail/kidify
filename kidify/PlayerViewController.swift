@@ -40,7 +40,8 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         }
         if let currentTrack = SPTAudioStreamingController.sharedInstance().metadata.currentTrack{
             self.artist.text = currentTrack.artistName
-            self.trackTitle.text = currentTrack.name
+            let currentTrackNo = tracks.index(of: self.currentTrack!)! + 1
+            self.trackTitle.text = String(format: "%@ (%d/%d)", currentTrack.name, currentTrackNo, tracks.count)
             updateCover(currentTrack)
         }
     }
