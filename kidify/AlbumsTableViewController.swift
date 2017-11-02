@@ -19,11 +19,34 @@ class AlbumsTableViewController: UITableViewController {
         
         if let list = playlist {
             list.loadAlbums {
-                self.albums = Array(list.albums).sorted(by: { $0.name < $1.name })
+                self.albums = Array(list.albums).sorted(by: {
+                    if let albumNo1 = self.extractFirstNumber($0.name) {
+                        if let albumNo2 = self.extractFirstNumber($1.name) {
+                            return albumNo1 < albumNo2
+                        }
+                    }
+                    return $0.name < $1.name
+                })
                 self.tableView.reloadData()
             }
         }
         
+    }
+    
+    private func extractFirstNumber(_ albumTitle: String) -> Int? {
+        do {
+            let regex = try NSRegularExpression(pattern: "\\d+")
+            let results = regex.matches(in: albumTitle,
+                                        range: NSRange(albumTitle.startIndex..., in: albumTitle))
+            if (results.count >= 1 ) {
+                if let result = Int(albumTitle[Range(results[0].range, in: albumTitle)!]) {
+                    return result
+                }
+            }
+            return 0
+        } catch {
+            return 0
+        }
     }
 
     // MARK: - Table view data source

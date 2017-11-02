@@ -59,7 +59,10 @@ class PlayListsViewController: UITableViewController {
         let playlistRequest = try! SPTPlaylistList.createRequestForGettingPlaylists(forUser: session?.canonicalUsername, withAccessToken: session?.accessToken)
         SPTRequest.sharedHandler().perform(playlistRequest) { (error, response, data) in
             let list = try! SPTPlaylistList(from: data, with: response)
-            for playList in list.items  {
+            guard let playlists = list.items else {
+                return
+            }
+            for playList in playlists  {
                 if let playlist = playList as? SPTPartialPlaylist {
                     if let uri = URL(string: playlist.uri.absoluteString){
                         let playlistVO = Playlist(name: playlist.name, uri: uri)
