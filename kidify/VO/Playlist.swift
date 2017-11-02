@@ -26,6 +26,7 @@ class Playlist {
     public func loadAlbums(completeHandler: @escaping () -> Void) {
         if(loaded) {
             completeHandler()
+            return
         }
         
         SPTPlaylistSnapshot.playlist(withURI: uri, accessToken: getAccessToken()) { (error, response) in
@@ -43,9 +44,15 @@ class Playlist {
         }
         for item in items {
             if let track = item as? SPTPlaylistTrack {
-                let albumVo = Album(name: track.album.name, uri: track.album.uri)
+                guard let album = track.album else {
+                    continue
+                }
+                guard let albumUri = album.uri else {
+                    continue
+                }
+                let albumVo = Album(name: album.name, uri: albumUri)
                 if(albums.contains(albumVo)){
-                    return
+                    continue
                 }
                 albums.insert(albumVo)
             }
@@ -59,9 +66,9 @@ class Playlist {
                 }
             }
         } else {
-            completeHandler()
             self.loaded = true
         }
+        completeHandler()
     }
     
     private func getAccessToken() -> String {
