@@ -74,6 +74,8 @@ class PlayListsViewController: UITableViewController {
     
     private func getSpotifyPlaylists() {
         
+        BusyIndicator.customActivityIndicatory(self.view, startAnimate: true)
+        
         let session = SPTAuth.defaultInstance().session
         
         let playlistRequest = try! SPTPlaylistList.createRequestForGettingPlaylists(forUser: session?.canonicalUsername, withAccessToken: session?.accessToken)
@@ -94,6 +96,7 @@ class PlayListsViewController: UITableViewController {
                 }
             }
             self.tableView.reloadData()
+            BusyIndicator.customActivityIndicatory(self.view, startAnimate: false)
         }
     }
     
@@ -125,4 +128,5 @@ class PlayListsViewController: UITableViewController {
         }
         
     }
+    
 }

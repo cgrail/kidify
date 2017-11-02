@@ -17,6 +17,8 @@ class AlbumsTableViewController: UITableViewController {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.hidesBackButton = false
         
+        BusyIndicator.customActivityIndicatory(self.view, startAnimate: true)
+        
         if let list = playlist {
             list.loadAlbums {
                 self.albums = Array(list.albums).sorted(by: {
@@ -28,6 +30,9 @@ class AlbumsTableViewController: UITableViewController {
                     return $0.name < $1.name
                 })
                 self.tableView.reloadData()
+                if(list.loaded) {
+                    BusyIndicator.customActivityIndicatory(self.view, startAnimate: false)
+                }
             }
         }
         
