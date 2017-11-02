@@ -117,17 +117,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3E-mq-JWp">
-                                            <rect key="frame" x="20" y="11" width="374" height="23"/>
+                                            <rect key="frame" x="20" y="12.333333333333334" width="374" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="top" secondItem="JbJ-r5-UlE" secondAttribute="topMargin" id="HAO-nz-EN3"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="S3E-mq-JWp" secondAttribute="bottom" id="Wec-Q7-2jn"/>
-                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="trailing" secondItem="JbJ-r5-UlE" secondAttribute="trailingMargin" id="jMa-0z-jAk"/>
-                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="leading" secondItem="JbJ-r5-UlE" secondAttribute="leadingMargin" id="qZE-uz-Urk"/>
+                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="trailing" secondItem="JbJ-r5-UlE" secondAttribute="trailingMargin" id="DAr-rI-X6v"/>
+                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="centerY" secondItem="JbJ-r5-UlE" secondAttribute="centerY" id="QAd-Cy-han"/>
+                                        <constraint firstItem="S3E-mq-JWp" firstAttribute="leading" secondItem="JbJ-r5-UlE" secondAttribute="leadingMargin" id="Ypb-RD-c3G"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="PlaylistTableViewCell"/>
@@ -212,17 +211,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCJ-HE-2uQ">
-                                            <rect key="frame" x="20" y="11" width="374" height="23"/>
+                                            <rect key="frame" x="20" y="12.333333333333334" width="374" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="YCJ-HE-2uQ" secondAttribute="trailing" id="9oO-0W-MYK"/>
-                                        <constraint firstItem="YCJ-HE-2uQ" firstAttribute="leading" secondItem="YLp-g5-uTb" secondAttribute="leadingMargin" id="D4j-Ta-NUj"/>
-                                        <constraint firstItem="YCJ-HE-2uQ" firstAttribute="top" secondItem="YLp-g5-uTb" secondAttribute="topMargin" id="cCm-la-srg"/>
-                                        <constraint firstItem="YCJ-HE-2uQ" firstAttribute="bottom" secondItem="YLp-g5-uTb" secondAttribute="bottomMargin" id="zRB-vI-xBF"/>
+                                        <constraint firstItem="YCJ-HE-2uQ" firstAttribute="centerY" secondItem="YLp-g5-uTb" secondAttribute="centerY" id="C3u-dD-0Se"/>
+                                        <constraint firstItem="YCJ-HE-2uQ" firstAttribute="trailing" secondItem="YLp-g5-uTb" secondAttribute="trailingMargin" id="Qtt-CQ-Ap5"/>
+                                        <constraint firstItem="YCJ-HE-2uQ" firstAttribute="leading" secondItem="YLp-g5-uTb" secondAttribute="leadingMargin" id="eHT-hj-PJ1"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
