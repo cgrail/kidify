@@ -14,7 +14,8 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     @IBOutlet var artist: UILabel!
     @IBOutlet var trackTitle: UILabel!
     @IBOutlet var progressSlider: UISlider!
-    @IBOutlet var playPauseButton: UIButton!
+    @IBOutlet var playButton: UIButton!
+    @IBOutlet var pauseButton: UIButton!
     
     public var currentTrack: SPTPartialTrack?
     
@@ -35,6 +36,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     func updateUI() {
+        updateControlButtons()
         if SPTAudioStreamingController.sharedInstance().metadata == nil || SPTAudioStreamingController.sharedInstance().metadata.currentTrack == nil {
             return
         }
@@ -87,6 +89,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChangePosition position: TimeInterval) {
+        self.updateControlButtons()
         if self.isChangingProgress {
             return
         }
@@ -113,6 +116,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChange metadata: SPTPlaybackMetadata) {
         self.updateUI()
+        self.updateControlButtons()
     }
     
     private func getNavigationViewController() -> NavigationViewController {
@@ -127,11 +131,30 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         }
     }
     
-    @IBAction func playPause(_ sender: Any) {
+    
+    @IBAction func play(_ sender: Any) {
+        self.setPlayStatus(playing: true)
+    }
+    @IBAction func pause(_ sender: Any) {
+        self.setPlayStatus(playing: false)
+    }
+    
+    private func setPlayStatus(playing: Bool) {
         if let player = SPTAudioStreamingController.sharedInstance() {
-            let newState = !player.playbackState.isPlaying
-            player.setIsPlaying(newState, callback: nil)
+            player.setIsPlaying(playing, callback: nil)
+            self.updateControlButtons(playing)
         }
+    }
+    
+    private func updateControlButtons() {
+        if let player = SPTAudioStreamingController.sharedInstance() {
+            self.updateControlButtons(player.playbackState.isPlaying)
+        }
+    }
+    
+    private func updateControlButtons(_ playing: Bool) {
+        playButton.isHidden = playing
+        pauseButton.isHidden = !playing
     }
     
     @IBAction func jumpToPosition(_ sender: UISlider) {
