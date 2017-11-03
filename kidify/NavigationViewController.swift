@@ -22,7 +22,7 @@ class NavigationViewController: UINavigationController{
             try SPTAudioStreamingController.sharedInstance().start(withClientId: SPTAuth.defaultInstance().clientID, audioController: nil, allowCaching: true)
             SPTAudioStreamingController.sharedInstance().login(withAccessToken: SPTAuth.defaultInstance().session.accessToken!)
             try audioSession.setMode(AVAudioSessionModeSpokenAudio)
-            try audioSession.setCategory(AVAudioSessionCategoryAmbient , with: .defaultToSpeaker)
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback , with: .defaultToSpeaker)
         } catch let error {
             print("didReceiveError: \(error.localizedDescription)")
         }
