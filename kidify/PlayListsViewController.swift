@@ -11,6 +11,7 @@ import UIKit
 class PlayListsViewController: UITableViewController {
     
     var playlists = [Playlist]()
+    let imageDownloader = ImageDownloader()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,26 +50,14 @@ class PlayListsViewController: UITableViewController {
         let playlist = playlists[indexPath.row]
         cell.label.text = playlist.name
         if let playlistImage = playlist.imageUrl {
-            downloadImage(url: playlistImage, cell: cell)
+            self.imageDownloader.downloadImage(playlistImage) { uiImage in
+                cell.playlistImage.image = uiImage
+            }
         }
         
         return cell
     }
-    
-    func downloadImage(url: URL, cell: PlaylistTableViewCell) {
-        getDataFromUrl(url: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async() {
-                cell.playlistImage.image = UIImage(data: data)
-            }
-        }
-    }
-    
-    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            completion(data, response, error)
-            }.resume()
-    }
+
     
     private func getSpotifyPlaylists() {
         

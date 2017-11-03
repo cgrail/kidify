@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E02FE251FAC942B00DFD5F1 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E02FE241FAC942B00DFD5F1 /* ImageDownloader.swift */; };
 		0E63DC921FA3210900BFD107 /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */; };
 		0E63DC941FA3215100BFD107 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */; };
 		0E63DC991FA32DA900BFD107 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC981FA32DA900BFD107 /* Playlist.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E02FE241FAC942B00DFD5F1 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
 		0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		0E63DC981FA32DA900BFD107 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				0EF670F41FA1E3980025BBF2 /* LaunchScreen.storyboard */,
 				0EF670F71FA1E3980025BBF2 /* Info.plist */,
 				0E8357FA1FA2191800553728 /* PlayListsViewController.swift */,
+				0E02FE241FAC942B00DFD5F1 /* ImageDownloader.swift */,
 				83ED29531FABBB55007C33C4 /* BusyIndicator.swift */,
 				0E8357FC1FA2271700553728 /* PlaylistTableViewCell.swift */,
 				0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */,
@@ -220,6 +223,7 @@
 			files = (
 				0E63DCA21FA3558000BFD107 /* NavigationViewController.swift in Sources */,
 				0E8357FD1FA2271700553728 /* PlaylistTableViewCell.swift in Sources */,
+				0E02FE251FAC942B00DFD5F1 /* ImageDownloader.swift in Sources */,
 				0E63DC921FA3210900BFD107 /* AlbumsTableViewController.swift in Sources */,
 				0E8357FB1FA2191800553728 /* PlayListsViewController.swift in Sources */,
 				0E63DC9E1FA348CF00BFD107 /* TracksTableViewController.swift in Sources */,

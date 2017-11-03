@@ -181,6 +181,10 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugU-cP-Rz4">
+                                            <rect key="frame" x="319" y="2" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="tur-zq-iOl" firstAttribute="leading" secondItem="IaT-cW-JLH" secondAttribute="leadingMargin" id="6Y7-ge-7k5"/>
@@ -189,6 +193,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="albumImage" destination="ugU-cP-Rz4" id="j1e-SN-2pt"/>
                                     <outlet property="label" destination="tur-zq-iOl" id="cn2-Lj-5Vq"/>
                                     <segue destination="SY7-6y-PgB" kind="show" identifier="ShowTracks" id="vbB-l3-G4F"/>
                                 </connections>

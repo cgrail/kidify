@@ -12,6 +12,7 @@ class AlbumsTableViewController: UITableViewController {
 
     public var playlist: Playlist?
     private var albums = [Album]()
+    private let imageDownloader = ImageDownloader()
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -73,6 +74,12 @@ class AlbumsTableViewController: UITableViewController {
         
         let album = albums[indexPath.row]
         cell.label.text = album.name
+        
+        if let imageUrl = album.imageUrl {
+            self.imageDownloader.downloadImage(imageUrl) { uiImage in
+                cell.albumImage.image = uiImage
+            }
+        }
         
         return cell
     }
