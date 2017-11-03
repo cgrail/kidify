@@ -53,11 +53,9 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         SPTTrack.track(withURI: URL(string: currentTrack.uri)!, accessToken: auth.session.accessToken, market: nil) { error, result in
             
             if let track = result as? SPTTrack {
-                guard let album = track.album else {
-                    self.cover.image = nil
-                    return
-                }
-                guard let largestCover = album.largestCover else {
+                guard let album = track.album,
+                    let largestCover = album.largestCover
+                else {
                     self.cover.image = nil
                     return
                 }

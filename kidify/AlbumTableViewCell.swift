@@ -11,6 +11,7 @@ import UIKit
 class AlbumTableViewCell: UITableViewCell {
 
     @IBOutlet var label: UILabel!
+    @IBOutlet var albumImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

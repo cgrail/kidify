@@ -14,6 +14,8 @@ class Album: Hashable {
     
     public var uri: URL
     
+    public var imageUrl: URL?
+    
     public var loaded = false
     
     public var tracks = [SPTPartialTrack]()
@@ -29,13 +31,9 @@ class Album: Hashable {
             return
         }
         SPTAlbum.album(withURI: uri, accessToken: getAccessToken(), market: nil)  { (error, albumResponse) in
-            guard let album = albumResponse as? SPTAlbum  else {
-                return
-            }
-            guard let trackPage = album.firstTrackPage else {
-                return
-            }
-            guard let albumTracks = trackPage.items else {
+            guard let album = albumResponse as? SPTAlbum,
+                let trackPage = album.firstTrackPage,
+                let albumTracks = trackPage.items else {
                 return
             }
             for albumTrack in albumTracks {

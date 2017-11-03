@@ -56,16 +56,10 @@ class TracksTableViewController: UITableViewController{
         
         switch(segue.identifier ?? "") {
         case "ShowPlayer":
-            guard let playerViewController = segue.destination as? PlayerViewController else {
+            guard let playerViewController = segue.destination as? PlayerViewController,
+                let selectedTrack = sender as? TrackTableViewCell,
+                let indexPath = tableView.indexPath(for: selectedTrack) else {
                 fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            guard let selectedTrack = sender as? TrackTableViewCell else {
-                fatalError("Unexpected sender: \(String(describing: sender))")
-            }
-            
-            guard let indexPath = tableView.indexPath(for: selectedTrack) else {
-                fatalError("The selected cell is not being displayed by the table")
             }
             
             let track = tracks[indexPath.row]

@@ -46,13 +46,14 @@ class Playlist {
         }
         for item in items {
             if let track = item as? SPTPlaylistTrack {
-                guard let album = track.album else {
-                    continue
-                }
-                guard let albumUri = album.uri else {
+                guard let album = track.album,
+                    let albumUri = album.uri else {
                     continue
                 }
                 let albumVo = Album(name: album.name, uri: albumUri)
+                if let image = album.largestCover {
+                    albumVo.imageUrl = image.imageURL
+                }
                 if(albums.contains(albumVo)){
                     continue
                 }
