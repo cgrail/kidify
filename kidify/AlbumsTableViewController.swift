@@ -22,10 +22,9 @@ class AlbumsTableViewController: UITableViewController {
         if let list = playlist {
             list.loadAlbums {
                 self.albums = Array(list.albums).sorted(by: {
-                    if let albumNo1 = self.extractFirstNumber($0.name) {
-                        if let albumNo2 = self.extractFirstNumber($1.name) {
-                            return albumNo1 < albumNo2
-                        }
+                    if let albumNo1 = self.extractFirstNumber($0.name),
+                        let albumNo2 = self.extractFirstNumber($1.name){
+                        return albumNo1 < albumNo2
                     }
                     return $0.name < $1.name
                 })
@@ -85,16 +84,10 @@ class AlbumsTableViewController: UITableViewController {
         
         switch(segue.identifier ?? "") {
         case "ShowTracks":
-            guard let trackController = segue.destination as? TracksTableViewController else {
+            guard let trackController = segue.destination as? TracksTableViewController,
+                let selectedAlbum = sender as? AlbumTableViewCell,
+                let indexPath = tableView.indexPath(for: selectedAlbum) else {
                 fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            guard let selectedAlbum = sender as? AlbumTableViewCell else {
-                fatalError("Unexpected sender: \(String(describing: sender))")
-            }
-            
-            guard let indexPath = tableView.indexPath(for: selectedAlbum) else {
-                fatalError("The selected cell is not being displayed by the table")
             }
             
             trackController.album = albums[indexPath.row]

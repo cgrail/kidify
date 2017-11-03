@@ -58,8 +58,6 @@ class PlayListsViewController: UITableViewController {
     func downloadImage(url: URL, cell: PlaylistTableViewCell) {
         getDataFromUrl(url: url) { data, response, error in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
             DispatchQueue.main.async() {
                 cell.playlistImage.image = UIImage(data: data)
             }
@@ -85,14 +83,13 @@ class PlayListsViewController: UITableViewController {
                 return
             }
             for playList in playlists  {
-                if let playlist = playList as? SPTPartialPlaylist {
-                    if let uri = URL(string: playlist.uri.absoluteString){
-                        let playlistVO = Playlist(name: playlist.name, uri: uri)
-                        if let imageUrl = playlist.smallestImage.imageURL {
-                            playlistVO.imageUrl = imageUrl
-                        }
-                        self.playlists.append(playlistVO)
+                if let playlist = playList as? SPTPartialPlaylist,
+                    let uri = URL(string: playlist.uri.absoluteString){
+                    let playlistVO = Playlist(name: playlist.name, uri: uri)
+                    if let imageUrl = playlist.smallestImage.imageURL {
+                        playlistVO.imageUrl = imageUrl
                     }
+                    self.playlists.append(playlistVO)
                 }
             }
             self.tableView.reloadData()
@@ -109,16 +106,10 @@ class PlayListsViewController: UITableViewController {
         
         switch(segue.identifier ?? "") {
         case "ShowAlbums":
-            guard let albumsControlelr = segue.destination as? AlbumsTableViewController else {
+            guard let albumsControlelr = segue.destination as? AlbumsTableViewController,
+                let selectedPlaylist = sender as? PlaylistTableViewCell,
+                let indexPath = tableView.indexPath(for: selectedPlaylist) else {
                 fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            guard let selectedPlaylist = sender as? PlaylistTableViewCell else {
-                fatalError("Unexpected sender: \(String(describing: sender))")
-            }
-            
-            guard let indexPath = tableView.indexPath(for: selectedPlaylist) else {
-                fatalError("The selected cell is not being displayed by the table")
             }
             
             albumsControlelr.playlist = playlists[indexPath.row]
