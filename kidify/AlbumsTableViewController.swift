@@ -13,6 +13,7 @@ class AlbumsTableViewController: UITableViewController {
     public var playlist: Playlist?
     private var albums = [Album]()
     private let imageDownloader = ImageDownloader()
+    @IBOutlet var navLabel: UINavigationItem!
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -21,6 +22,7 @@ class AlbumsTableViewController: UITableViewController {
         BusyIndicator.customActivityIndicatory(self.view, startAnimate: true)
         
         if let list = playlist {
+            navLabel.title = list.name
             list.loadAlbums {
                 self.albums = Array(list.albums).sorted(by: {
                     if let albumNo1 = self.extractFirstNumber($0.name),

@@ -210,6 +210,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Albums" id="uHk-fO-HQg"/>
+                    <connections>
+                        <outlet property="navLabel" destination="uHk-fO-HQg" id="Yce-VR-zXT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Dv-SN-BFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -256,6 +259,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Tracks" id="xme-pN-TvP"/>
+                    <connections>
+                        <outlet property="navLabel" destination="xme-pN-TvP" id="a9L-6Y-zaz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHh-6v-LVr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -374,6 +380,7 @@
                     <connections>
                         <outlet property="artist" destination="QDv-nq-Wxu" id="blL-b9-iqB"/>
                         <outlet property="cover" destination="3p7-Dx-bkN" id="IbJ-nZ-E3z"/>
+                        <outlet property="navLabel" destination="TJo-6Q-Kkh" id="Hta-gj-sO9"/>
                         <outlet property="nextButton" destination="HXg-4Q-WRo" id="cHE-s0-mTl"/>
                         <outlet property="pauseButton" destination="I97-Xe-zjv" id="H3f-tZ-8Jm"/>
                         <outlet property="playButton" destination="RBv-GU-MP0" id="B7T-yG-8YF"/>

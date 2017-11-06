@@ -12,12 +12,14 @@ class TracksTableViewController: UITableViewController{
     
     public var album: Album?
     public var tracks = [SPTPartialTrack]()
+    @IBOutlet var navLabel: UINavigationItem!
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.hidesBackButton = false
         
         if let a = self.album {
+            navLabel.title = a.name
             a.loadAlbum{
                 self.tracks = a.tracks
                 self.tableView.reloadData()
@@ -64,7 +66,7 @@ class TracksTableViewController: UITableViewController{
             
             let track = tracks[indexPath.row]
             playerViewController.currentTrack = track
-            playerViewController.tracks = tracks
+            playerViewController.album = album
             
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")

@@ -18,10 +18,11 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     @IBOutlet var pauseButton: UIButton!
     @IBOutlet var prevButton: UIButton!
     @IBOutlet var nextButton: UIButton!
+    @IBOutlet var navLabel: UINavigationItem!
     
     public var currentTrack: SPTPartialTrack?
     
-    public var tracks = [SPTPartialTrack]()
+    public var album: Album?
     
     var isChangingProgress: Bool = false
     
@@ -34,6 +35,9 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         
         if let track = currentTrack {
             playTrack(track: track)
+            if let album = album {
+                self.navLabel.title = album.name
+            }
         }
     }
     
@@ -42,10 +46,11 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         if SPTAudioStreamingController.sharedInstance().metadata == nil || SPTAudioStreamingController.sharedInstance().metadata.currentTrack == nil {
             return
         }
-        if let currentTrack = SPTAudioStreamingController.sharedInstance().metadata.currentTrack{
+        if let currentTrack = SPTAudioStreamingController.sharedInstance().metadata.currentTrack,
+            let album = album{
             self.artist.text = currentTrack.artistName
-            let currentTrackNo = tracks.index(of: self.currentTrack!)! + 1
-            self.trackTitle.text = String(format: "%@ (%d/%d)", currentTrack.name, currentTrackNo, tracks.count)
+            let currentTrackNo = album.tracks.index(of: self.currentTrack!)! + 1
+            self.trackTitle.text = String(format: "%@ (%d/%d)", currentTrack.name, currentTrackNo, album.tracks.count)
             updateCover(currentTrack)
         }
     }
@@ -101,16 +106,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didStopPlayingTrack trackUri: String) {
-        var reachedLastSong = false
-        for track in tracks {
-            if(reachedLastSong) {
-                playTrack(track: track)
-                return
-            }
-            if(track.uri.absoluteString == trackUri) {
-                reachedLastSong = true
-            }
-        }
+        self.playNext("")
     }
     
     
@@ -160,32 +156,38 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         playButton.isHidden = playing
         pauseButton.isHidden = !playing
         
-        if let index = tracks.index(of: currentTrack!) {
+        if let album = album,
+            let index = album.tracks.index(of: currentTrack!){
             prevButton.titleLabel?.textColor = index == 0 ? disabledColor : activeColor
-            nextButton.titleLabel?.textColor = (index+1) == tracks.count ? disabledColor : activeColor
+            nextButton.titleLabel?.textColor = (index+1) == album.tracks.count ? disabledColor : activeColor
         }
     }
     
     @IBAction func playPrevious(_ sender: Any) {
-        if let index = tracks.index(of: currentTrack!) {
+        if let album = album,
+            let index = album.tracks.index(of: currentTrack!) {
             self.playTrackByIndex(index - 1)
         }
     }
     @IBAction func playNext(_ sender: Any) {
-        if let index = tracks.index(of: currentTrack!) {
+        if let album = album,
+            let index = album.tracks.index(of: currentTrack!) {
             self.playTrackByIndex(index + 1)
         }
     }
     
     private func playTrackByIndex(_ index: Int) {
+        guard let album = album else {
+            return
+        }
         var newIndex = index
         if (newIndex < 0) {
             newIndex = 0
         }
-        if ((newIndex+1) > tracks.count) {
-            newIndex = tracks.count - 1
+        if ((newIndex+1) > album.tracks.count) {
+            newIndex = album.tracks.count - 1
         }
-        self.playTrack(track: tracks[newIndex])
+        self.playTrack(track: album.tracks[newIndex])
     }
     
     @IBAction func jumpToPosition(_ sender: UISlider) {
