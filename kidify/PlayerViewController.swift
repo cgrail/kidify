@@ -16,6 +16,8 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     @IBOutlet var progressSlider: UISlider!
     @IBOutlet var playButton: UIButton!
     @IBOutlet var pauseButton: UIButton!
+    @IBOutlet var prevButton: UIButton!
+    @IBOutlet var nextButton: UIButton!
     
     public var currentTrack: SPTPartialTrack?
     
@@ -122,6 +124,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     private func playTrack(track:SPTPartialTrack) {
+        currentTrack = track
         SPTAudioStreamingController.sharedInstance().playSpotifyURI(track.uri.absoluteString, startingWith: 0, startingWithPosition: 0) { error in
             if (error != nil) {
                 debugPrint("Playback error" + String(describing: error))
@@ -150,9 +153,39 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         }
     }
     
+    private let activeColor = UIColor.white
+    private let disabledColor = UIColor.darkGray
+    
     private func updateControlButtons(_ playing: Bool) {
         playButton.isHidden = playing
         pauseButton.isHidden = !playing
+        
+        if let index = tracks.index(of: currentTrack!) {
+            prevButton.titleLabel?.textColor = index == 0 ? disabledColor : activeColor
+            nextButton.titleLabel?.textColor = (index+1) == tracks.count ? disabledColor : activeColor
+        }
+    }
+    
+    @IBAction func playPrevious(_ sender: Any) {
+        if let index = tracks.index(of: currentTrack!) {
+            self.playTrackByIndex(index - 1)
+        }
+    }
+    @IBAction func playNext(_ sender: Any) {
+        if let index = tracks.index(of: currentTrack!) {
+            self.playTrackByIndex(index + 1)
+        }
+    }
+    
+    private func playTrackByIndex(_ index: Int) {
+        var newIndex = index
+        if (newIndex < 0) {
+            newIndex = 0
+        }
+        if ((newIndex+1) > tracks.count) {
+            newIndex = tracks.count - 1
+        }
+        self.playTrack(track: tracks[newIndex])
     }
     
     @IBAction func jumpToPosition(_ sender: UISlider) {
