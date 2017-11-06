@@ -75,7 +75,8 @@ class PlayListsViewController: UITableViewController {
                 if let playlist = playList as? SPTPartialPlaylist,
                     let uri = URL(string: playlist.uri.absoluteString){
                     let playlistVO = Playlist(name: playlist.name, uri: uri)
-                    if let imageUrl = playlist.smallestImage.imageURL {
+                    if let smallestImage = playlist.smallestImage,
+                       let imageUrl = smallestImage.imageURL {
                         playlistVO.imageUrl = imageUrl
                     }
                     self.playlists.append(playlistVO)
