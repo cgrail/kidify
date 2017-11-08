@@ -27,8 +27,7 @@ class LoginController: UIViewController, WebViewControllerDelegate {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         let auth = SPTAuth.defaultInstance()
-        // Uncomment to turn off native/SSO/flip-flop login flow
-        
+
         // Check if we have a token at all
         if auth!.session == nil {
             self.statusLabel.text = ""
@@ -85,7 +84,8 @@ class LoginController: UIViewController, WebViewControllerDelegate {
     
     func openLoginPage() {
         self.statusLabel.text = "Logging in..."
-        self.authViewController = self.getAuthViewController(withURL: SPTAuth.defaultInstance().spotifyWebAuthenticationURL())
+        let url = URL(string: "https://grails.de/kidify/index.html#" + SPTAuth.defaultInstance().spotifyWebAuthenticationURL().absoluteString)!
+        self.authViewController = self.getAuthViewController(withURL: url)
         self.definesPresentationContext = true
         self.present(self.authViewController!, animated: true, completion: {})
     }

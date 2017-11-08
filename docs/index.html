@@ -8,7 +8,9 @@
 
 var urlParts = window.location.href.split("#")
 if(urlParts.length == 2) {
-	window.location = urlParts[1];
+	setTimeout(function() {
+		window.location = urlParts[1];
+	}, 1000);
 } else {
 	alert("Unable to forward to Spotify. Missing forward URL.")
 }
@@ -17,7 +19,7 @@ if(urlParts.length == 2) {
 <h1 style="background-color: lightgray; padding: 10px" >Kidify</h1>
 
 <p style="padding: 10px">
-You are being redirect to Spotify to be able to login.
+You are being redirect to Spotify...
 </p>
 
 </body>
