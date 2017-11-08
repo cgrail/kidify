@@ -73,7 +73,14 @@ class LoginController: UIViewController, WebViewControllerDelegate {
         }
     }
     
+    private var showPlayerCalled = false
+    
     func showPlayer() {
+        if (showPlayerCalled) {
+            return
+        } else {
+            showPlayerCalled = true
+        }
         self.firstLoad = false
         self.statusLabel.text = "Logged in."
         if let navi = self.navigationController as? NavigationViewController {
