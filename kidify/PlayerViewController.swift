@@ -20,8 +20,6 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var navLabel: UINavigationItem!
     
-    public var currentTrack: SPTPartialTrack?
-    
     public var album: Album?
     
     var isChangingProgress: Bool = false
@@ -33,8 +31,19 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         SPTAudioStreamingController.sharedInstance().delegate = self
         SPTAudioStreamingController.sharedInstance().playbackDelegate = self
         
-        if let track = currentTrack {
-            playTrack(track: track)
+        if let track = album?.currentlyPlayed {
+            var currentlyPlayingSelectedTrack = false
+            if let metadata = SPTAudioStreamingController.sharedInstance().metadata,
+                let currentTrack = metadata.currentTrack {
+                if (currentTrack.uri == track.uri.absoluteString) {
+                    currentlyPlayingSelectedTrack = true
+                }
+            }
+            if (!currentlyPlayingSelectedTrack) {
+                playTrack(track: track)
+            } else {
+                self.updateUI()
+            }
             if let album = album {
                 self.navLabel.title = album.name
             }
@@ -49,7 +58,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         if let currentTrack = SPTAudioStreamingController.sharedInstance().metadata.currentTrack,
             let album = album{
             self.artist.text = currentTrack.artistName
-            let currentTrackNo = album.tracks.index(of: self.currentTrack!)! + 1
+            let currentTrackNo = album.tracks.index(of: album.currentlyPlayed!)! + 1
             self.trackTitle.text = String(format: "%@ (%d/%d)", currentTrack.name, currentTrackNo, album.tracks.count)
             updateCover(currentTrack)
         }
@@ -119,8 +128,8 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         return self.navigationController as! NavigationViewController
     }
     
-    private func playTrack(track:SPTPartialTrack) {
-        currentTrack = track
+    private func playTrack(track:Track) {
+        album?.currentlyPlayed = track
         SPTAudioStreamingController.sharedInstance().playSpotifyURI(track.uri.absoluteString, startingWith: 0, startingWithPosition: 0) { error in
             if (error != nil) {
                 debugPrint("Playback error" + String(describing: error))
@@ -157,7 +166,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         pauseButton.isHidden = !playing
         
         if let album = album,
-            let index = album.tracks.index(of: currentTrack!){
+            let index = album.tracks.index(of: album.currentlyPlayed!){
             prevButton.titleLabel?.textColor = index == 0 ? disabledColor : activeColor
             nextButton.titleLabel?.textColor = (index+1) == album.tracks.count ? disabledColor : activeColor
         }
@@ -165,13 +174,13 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     
     @IBAction func playPrevious(_ sender: Any) {
         if let album = album,
-            let index = album.tracks.index(of: currentTrack!) {
+            let index = album.tracks.index(of: album.currentlyPlayed!) {
             self.playTrackByIndex(index - 1)
         }
     }
     @IBAction func playNext(_ sender: Any) {
         if let album = album,
-            let index = album.tracks.index(of: currentTrack!) {
+            let index = album.tracks.index(of: album.currentlyPlayed!) {
             self.playTrackByIndex(index + 1)
         }
     }

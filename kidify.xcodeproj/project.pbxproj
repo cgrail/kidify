@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E02FE251FAC942B00DFD5F1 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E02FE241FAC942B00DFD5F1 /* ImageDownloader.swift */; };
+		0E32C2361FB3542200655FA5 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E32C2351FB3542200655FA5 /* Track.swift */; };
 		0E63DC921FA3210900BFD107 /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */; };
 		0E63DC941FA3215100BFD107 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */; };
 		0E63DC991FA32DA900BFD107 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63DC981FA32DA900BFD107 /* Playlist.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		0E02FE241FAC942B00DFD5F1 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		0E32C2351FB3542200655FA5 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		0E63DC911FA3210900BFD107 /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
 		0E63DC931FA3215100BFD107 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		0E63DC981FA32DA900BFD107 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				0E63DC981FA32DA900BFD107 /* Playlist.swift */,
 				0E63DC9B1FA32DD400BFD107 /* Album.swift */,
+				0E32C2351FB3542200655FA5 /* Track.swift */,
 			);
 			path = VO;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				0E63DC9C1FA32DD400BFD107 /* Album.swift in Sources */,
 				83ED29541FABBB55007C33C4 /* BusyIndicator.swift in Sources */,
 				0E63DC941FA3215100BFD107 /* AlbumTableViewCell.swift in Sources */,
+				0E32C2361FB3542200655FA5 /* Track.swift in Sources */,
 				0EF670EC1FA1E3980025BBF2 /* AppDelegate.swift in Sources */,
 				0EF6710B1FA207C10025BBF2 /* WebViewController.swift in Sources */,
 				0E63DCA01FA3490100BFD107 /* TrackTableViewCell.swift in Sources */,

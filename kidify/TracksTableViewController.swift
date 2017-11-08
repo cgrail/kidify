@@ -11,7 +11,7 @@ import UIKit
 class TracksTableViewController: UITableViewController{
     
     public var album: Album?
-    public var tracks = [SPTPartialTrack]()
+    public var tracks = [Track]()
     @IBOutlet var navLabel: UINavigationItem!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +47,13 @@ class TracksTableViewController: UITableViewController{
         
         
         let track = tracks[indexPath.row]
-        cell.label.text = track.name
+        if (album?.currentlyPlayed == track) {
+            cell.label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+            cell.label.text = "> " + track.name
+        } else {
+            cell.label.font = UIFont.systemFont(ofSize: UIFont.labelFontSize)
+            cell.label.text = track.name
+        }
         
         return cell
     }
@@ -65,7 +71,7 @@ class TracksTableViewController: UITableViewController{
             }
             
             let track = tracks[indexPath.row]
-            playerViewController.currentTrack = track
+            album?.currentlyPlayed = track
             playerViewController.album = album
             
         default:

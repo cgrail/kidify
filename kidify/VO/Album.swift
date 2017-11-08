@@ -18,7 +18,9 @@ class Album: Hashable {
     
     public var loaded = false
     
-    public var tracks = [SPTPartialTrack]()
+    public var tracks = [Track]()
+    
+    public var currentlyPlayed : Track?
     
     init(name: String, uri: URL) {
         self.name = name
@@ -38,7 +40,8 @@ class Album: Hashable {
             }
             for albumTrack in albumTracks {
                 if let track = albumTrack as? SPTPartialTrack {
-                    self.tracks.append(track)
+                    let trackVo = Track(name: track.name, uri: track.uri)
+                    self.tracks.append(trackVo)
                 }
             }
             self.loaded = true
