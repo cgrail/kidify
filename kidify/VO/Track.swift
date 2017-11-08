@@ -14,6 +14,8 @@ class Track: NSObject {
     
     public var uri: URL
     
+    public var played = false
+    
     init(name: String, uri: URL) {
         self.name = name
         self.uri = uri

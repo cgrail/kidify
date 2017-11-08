@@ -47,6 +47,7 @@ class TracksTableViewController: UITableViewController{
         
         
         let track = tracks[indexPath.row]
+        cell.label.textColor = track.played ? UIColor.lightGray : UIColor.black
         if (album?.currentlyPlayed == track) {
             cell.label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
             cell.label.text = "> " + track.name
