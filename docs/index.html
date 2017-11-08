@@ -1,0 +1,24 @@
+<DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Kidify</title>
+</head>
+<body style="font-family: Arial">
+<script language="javascript" type="text/javascript">
+
+var urlParts = window.location.href.split("#")
+if(urlParts.length == 2) {
+	window.location = urlParts[1];
+} else {
+	alert("Unable to forward to Spotify. Missing forward URL.")
+}
+</script>
+
+<h1 style="background-color: lightgray; padding: 10px" >Kidify</h1>
+
+<p style="padding: 10px">
+You are being redirect to Spotify to be able to login.
+</p>
+
+</body>
+</html>
