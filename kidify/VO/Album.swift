@@ -42,7 +42,7 @@ class Album: Hashable {
             }
             for albumTrack in albumTracks {
                 if let track = albumTrack as? SPTPartialTrack {
-                    let trackVo = Track(name: track.name, uri: track.uri)
+                    let trackVo = Track(name: track.name, uri: track.uri, sharingURL: track.sharingURL.absoluteString)
                     self.tracks.append(trackVo)
                 }
             }

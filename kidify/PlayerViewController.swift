@@ -208,5 +208,21 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
             SPTAudioStreamingController.sharedInstance().seek(to: Double(position), callback: nil)
         }
     }
-
+    
+    @IBAction func showInfo() {
+        var msg = "\n \n \n \n URL of current track: \n"
+        if let currentTrack = album?.currentlyPlayed {
+            msg += currentTrack.sharingURL
+        }
+        let alertController = UIAlertController(title: "", message: msg , preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        if let image = UIImage(named: "Spotify") {
+            let imageView = UIImageView(frame: CGRect(x: 60, y: 20, width: 150, height: 45))
+            imageView.image = image
+            alertController.view.addSubview(imageView)
+        }
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }

@@ -14,11 +14,14 @@ class Track: NSObject {
     
     public var uri: URL
     
+    public var sharingURL: String
+    
     public var played = false
     
-    init(name: String, uri: URL) {
+    init(name: String, uri: URL, sharingURL: String) {
         self.name = name
         self.uri = uri
+        self.sharingURL = sharingURL
     }
     
     static func == (lhs: Track, rhs: Track) -> Bool{

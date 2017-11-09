@@ -374,7 +374,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jbs-48-W59"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Player" id="TJo-6Q-Kkh"/>
+                    <navigationItem key="navigationItem" title="Player" id="TJo-6Q-Kkh">
+                        <barButtonItem key="rightBarButtonItem" image="Spotify" landscapeImage="Spotify" id="C5Z-AE-DJ2">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" id="0Ia-62-Avy">
+                                <rect key="frame" x="726" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="showInfo" destination="dYB-Rb-XC7" eventType="touchUpInside" id="RlZ-hP-KtZ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="artist" destination="QDv-nq-Wxu" id="blL-b9-iqB"/>
                         <outlet property="cover" destination="3p7-Dx-bkN" id="IbJ-nZ-E3z"/>
@@ -393,6 +403,7 @@
     </scenes>
     <resources>
         <image name="Play" width="180" height="180"/>
+        <image name="Spotify" width="150" height="45"/>
         <image name="background" width="562" height="1208"/>
     </resources>
 </document>
