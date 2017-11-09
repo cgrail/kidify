@@ -21,6 +21,8 @@ Todo:
 - [ ] Strip Track names and remove duplicate information especially for Audiobooks
 - [ ] Smooth fading between tracks
 - [ ] Translations
+- [ ] Implement Settings Page
+- [ ] Logout
 
 # Links
 
