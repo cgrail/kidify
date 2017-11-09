@@ -76,6 +76,7 @@ class AlbumsTableViewController: UITableViewController {
         
         let album = albums[indexPath.row]
         cell.label.text = album.name
+        cell.label.textColor = album.partlyFinished ? UIColor.lightGray : UIColor.black
         
         if let imageUrl = album.imageUrl {
             self.imageDownloader.downloadImage(imageUrl) { uiImage in

@@ -117,6 +117,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didStopPlayingTrack trackUri: String) {
         if let currentTrack = album?.currentlyPlayed {
             currentTrack.played = true
+            self.album?.partlyFinished = true
         }
         self.playNext("")
     }

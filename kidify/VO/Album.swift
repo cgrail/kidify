@@ -22,6 +22,8 @@ class Album: Hashable {
     
     public var currentlyPlayed : Track?
     
+    public var partlyFinished = false
+    
     init(name: String, uri: URL) {
         self.name = name
         self.uri = uri
