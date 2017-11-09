@@ -15,14 +15,11 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     @IBOutlet var trackTitle: UILabel!
     @IBOutlet var progressSlider: UISlider!
     @IBOutlet var playButton: UIButton!
-    @IBOutlet var pauseButton: UIButton!
     @IBOutlet var prevButton: UIButton!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var navLabel: UINavigationItem!
     
     public var album: Album?
-    
-    var isChangingProgress: Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -51,7 +48,6 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     func updateUI() {
-        updateControlButtons()
         if SPTAudioStreamingController.sharedInstance().metadata == nil || SPTAudioStreamingController.sharedInstance().metadata.currentTrack == nil {
             return
         }
@@ -103,10 +99,8 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChangePosition position: TimeInterval) {
-        self.updateControlButtons()
-        if self.isChangingProgress {
-            return
-        }
+        updatePlayPauseButton()
+        updatePrevNextButtons()
         if let currentTrack = SPTAudioStreamingController.sharedInstance().metadata.currentTrack {
             let positionDouble = Double(position)
             let durationDouble = Double(currentTrack.duration)
@@ -125,7 +119,6 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChange metadata: SPTPlaybackMetadata) {
         self.updateUI()
-        self.updateControlButtons()
     }
     
     private func getNavigationViewController() -> NavigationViewController {
@@ -134,6 +127,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
     
     private func playTrack(track:Track) {
         album?.currentlyPlayed = track
+        self.updatePrevNextButtons()
         SPTAudioStreamingController.sharedInstance().playSpotifyURI(track.uri.absoluteString, startingWith: 0, startingWithPosition: 0) { error in
             if (error != nil) {
                 debugPrint("Playback error" + String(describing: error))
@@ -141,34 +135,37 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         }
     }
     
-    
-    @IBAction func play(_ sender: Any) {
-        self.setPlayStatus(playing: true)
-    }
-    @IBAction func pause(_ sender: Any) {
-        self.setPlayStatus(playing: false)
-    }
-    
-    private func setPlayStatus(playing: Bool) {
+    @IBAction func onPlayPause() {
         if let player = SPTAudioStreamingController.sharedInstance() {
+            let playing = !player.playbackState.isPlaying
             player.setIsPlaying(playing, callback: nil)
-            self.updateControlButtons(playing)
-        }
-    }
-    
-    private func updateControlButtons() {
-        if let player = SPTAudioStreamingController.sharedInstance() {
-            self.updateControlButtons(player.playbackState.isPlaying)
+            self.updatePlayPauseButton(playing)
         }
     }
     
     private let activeColor = UIColor.white
     private let disabledColor = UIColor.darkGray
     
-    private func updateControlButtons(_ playing: Bool) {
-        playButton.isHidden = playing
-        pauseButton.isHidden = !playing
-        
+    private var lastPlayingStatus = false
+    
+    private func updatePlayPauseButton() {
+        if let player = SPTAudioStreamingController.sharedInstance() {
+            self.updatePlayPauseButton(player.playbackState.isPlaying)
+        }
+    }
+    
+    private func updatePlayPauseButton(_ playing: Bool) {
+        if(playing == lastPlayingStatus) {
+            return
+        }
+        lastPlayingStatus = playing
+        let imageName = playing ? "Pause" : "Play"
+        if let image = UIImage(named: imageName) {
+            playButton.setImage(image, for: .normal)
+        }
+    }
+    
+    private func updatePrevNextButtons() {
         if let album = album,
             let index = album.tracks.index(of: album.currentlyPlayed!){
             prevButton.titleLabel?.textColor = index == 0 ? disabledColor : activeColor

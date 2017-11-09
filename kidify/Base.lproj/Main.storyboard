@@ -313,7 +313,7 @@
                                         </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O3J-EG-OTl">
-                                        <rect key="frame" x="264" y="860" width="200" height="60"/>
+                                        <rect key="frame" x="289" y="860" width="150" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezh-Rv-aCT">
                                                 <rect key="frame" x="0.0" y="5" width="50" height="50"/>
@@ -332,26 +332,16 @@
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBv-GU-MP0">
                                                 <rect key="frame" x="50" y="5" width="50" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="RBv-GU-MP0" secondAttribute="height" multiplier="1:1" id="BUX-y7-UNZ"/>
-                                                    <constraint firstAttribute="width" constant="50" id="hLi-Md-6Qr"/>
+                                                    <constraint firstAttribute="width" secondItem="RBv-GU-MP0" secondAttribute="height" multiplier="1:1" id="aRT-CT-8JV"/>
+                                                    <constraint firstAttribute="width" constant="50" id="qf7-b2-WNI"/>
                                                 </constraints>
                                                 <state key="normal" image="Play"/>
                                                 <connections>
-                                                    <action selector="play:" destination="dYB-Rb-XC7" eventType="touchUpInside" id="Feg-lh-GiX"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I97-Xe-zjv">
-                                                <rect key="frame" x="100" y="5" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="aMV-wx-g9A"/>
-                                                </constraints>
-                                                <state key="normal" image="Pause"/>
-                                                <connections>
-                                                    <action selector="pause:" destination="dYB-Rb-XC7" eventType="touchUpInside" id="tou-0Y-VE2"/>
+                                                    <action selector="onPlayPause" destination="dYB-Rb-XC7" eventType="touchUpInside" id="WyK-Yv-264"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXg-4Q-WRo">
-                                                <rect key="frame" x="150" y="5" width="50" height="50"/>
+                                                <rect key="frame" x="100" y="5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="AXX-Lh-Dht"/>
                                                     <constraint firstAttribute="height" constant="50" id="RMk-9f-VUV"/>
@@ -365,9 +355,6 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="I97-Xe-zjv" firstAttribute="width" secondItem="I97-Xe-zjv" secondAttribute="height" multiplier="1:1" id="cCg-iH-1u2"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -393,7 +380,6 @@
                         <outlet property="cover" destination="3p7-Dx-bkN" id="IbJ-nZ-E3z"/>
                         <outlet property="navLabel" destination="TJo-6Q-Kkh" id="Hta-gj-sO9"/>
                         <outlet property="nextButton" destination="HXg-4Q-WRo" id="cHE-s0-mTl"/>
-                        <outlet property="pauseButton" destination="I97-Xe-zjv" id="H3f-tZ-8Jm"/>
                         <outlet property="playButton" destination="RBv-GU-MP0" id="B7T-yG-8YF"/>
                         <outlet property="prevButton" destination="ezh-Rv-aCT" id="owa-eu-CzU"/>
                         <outlet property="progressSlider" destination="n6k-Xn-w53" id="BcD-Ci-ZTz"/>
@@ -406,7 +392,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Pause" width="180" height="180"/>
         <image name="Play" width="180" height="180"/>
         <image name="background" width="562" height="1208"/>
     </resources>
