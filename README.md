@@ -15,11 +15,12 @@ Features:
 - Albums and audiobooks are correctly sorted by the number in the album name.
 
 Todo:
-[ ] Cache playlists, albums, tracks and images
-[ ] Implement Time Limit
-[ ] Add Image to Album View
-[ ] Strip Track names and remove duplicate information especially for Audiobooks
-[ ] Smooth fading between tracks
+- [ ] Cache playlists, albums, tracks and images
+- [ ] Implement Time Limit
+- [ ] Add Image to Album View
+- [ ] Strip Track names and remove duplicate information especially for Audiobooks
+- [ ] Smooth fading between tracks
+- [ ] Translations
 
 # Links
 
