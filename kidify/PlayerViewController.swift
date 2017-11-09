@@ -102,9 +102,11 @@ class PlayerViewController: UIViewController, SPTAudioStreamingDelegate, SPTAudi
         updatePlayPauseButton()
         updatePrevNextButtons()
         if let currentTrack = SPTAudioStreamingController.sharedInstance().metadata.currentTrack {
-            let positionDouble = Double(position)
-            let durationDouble = Double(currentTrack.duration)
-            self.progressSlider.value = Float(positionDouble / durationDouble)
+            if (!self.progressSlider.isTracking) {
+                let positionDouble = Double(position)
+                let durationDouble = Double(currentTrack.duration)
+                self.progressSlider.value = Float(positionDouble / durationDouble)
+            }
         }
     }
     
